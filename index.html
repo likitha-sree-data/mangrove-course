@@ -316,6 +316,65 @@ legend { padding: 0; font: 600 clamp(1.35rem, 2.8vw, 1.75rem)/1.3 var(--display)
 @media (prefers-color-scheme: dark) { #tip { background: #0f3a66; border: 1px solid rgba(232,242,252,.25); } }
 .rv-tips { margin: 6px 0 0; padding-left: 20px; }
 
+/* ---------- Chart and scene animation ---------- */
+.gx { transform-box: fill-box; transform-origin: 0 50%; animation: growx 1.1s cubic-bezier(.2,.8,.2,1) both; animation-delay: var(--d, 0s); }
+@keyframes growx { from { transform: scaleX(0); } }
+.fi { animation: fadein .8s ease both; animation-delay: var(--d, 0s); }
+@keyframes fadein { from { opacity: 0; } }
+.pop { transform-box: fill-box; transform-origin: center; animation: popin .55s cubic-bezier(.3,1.4,.5,1) both; animation-delay: var(--d, 0s); }
+@keyframes popin { from { transform: scale(.3); opacity: 0; } }
+.pulse { animation: pulseo 1.5s ease-in-out infinite alternate; }
+@keyframes pulseo { from { opacity: .7; } }
+.warmband { animation: warmpulse 5s ease-in-out infinite alternate; }
+@keyframes warmpulse { from { opacity: .12; } to { opacity: .3; } }
+.flowline { animation: dash 1.2s linear infinite; }
+@keyframes dash { to { stroke-dashoffset: -26; } }
+.nudge { animation: nudge 1.3s ease-in-out infinite alternate; }
+@keyframes nudge { to { transform: translateX(8px); } }
+.bobx { animation: bobx 2.8s ease-in-out infinite alternate; }
+@keyframes bobx { to { transform: translateY(-6px); } }
+.growup { transform-box: fill-box; transform-origin: 50% 100%; animation: growup 8s ease-in-out infinite; animation-delay: var(--d, 0s); }
+@keyframes growup { 0% { transform: scale(.3); opacity: 0; } 10% { opacity: 1; } 55%, 88% { transform: scale(1); opacity: 1; } 100% { transform: scale(1); opacity: 0; } }
+.spin { transform-box: fill-box; transform-origin: center; animation: spin 14s linear infinite; }
+.spin2 { animation: spin 3.5s linear infinite; }
+.tidecycle { animation: tidecycle 8s ease-in-out infinite; }
+@keyframes tidecycle { 0%, 100% { opacity: 0; } 35%, 65% { opacity: .65; } }
+.tideswing { animation: tideswing 7s ease-in-out infinite alternate; }
+@keyframes tideswing { from { transform: translateY(14px); } to { transform: translateY(-12px); } }
+.sway { transform-box: fill-box; transform-origin: 50% 100%; animation: sway 4.5s ease-in-out infinite alternate; }
+@keyframes sway { from { transform: rotate(-1.6deg); } to { transform: rotate(1.6deg); } }
+.wave { animation: flagwave 1.2s ease-in-out infinite alternate; }
+@keyframes flagwave { from { transform: skewY(-6deg) scaleX(1); } to { transform: skewY(6deg) scaleX(.9); } }
+.twinkle { animation: twinkle2 2.2s ease-in-out infinite; }
+@keyframes twinkle2 { 50% { opacity: .1; } }
+.travel { animation: travel 9s linear infinite; }
+@keyframes travel { from { transform: translateX(0); } to { transform: translateX(var(--tx)); } }
+.bubble { animation: rise 4s linear infinite; }
+@keyframes rise { from { transform: translateY(0); opacity: .9; } to { transform: translateY(-46px); opacity: 0; } }
+.seeddrift { animation: seeddrift 6s ease-out infinite; animation-delay: var(--d, 0s); }
+@keyframes seeddrift { 0% { transform: translateX(-70px); opacity: 0; } 25% { opacity: 1; } 70%, 100% { transform: translateX(0); opacity: 1; } }
+.blocked { animation: blocked 3.2s ease-in infinite; }
+@keyframes blocked { 0% { transform: translateX(-30px); opacity: 0; } 30% { opacity: 1; } 80% { transform: translateX(34px); opacity: 1; } 100% { transform: translateX(34px); opacity: 0; } }
+.tidebig { animation: tidebig 7s ease-in-out infinite alternate; }
+@keyframes tidebig { from { transform: translateY(40px); } to { transform: translateY(-42px); } }
+.tidesmall { animation: tidesmall 7s ease-in-out infinite alternate; }
+@keyframes tidesmall { from { transform: translateY(5px); } to { transform: translateY(-5px); } }
+.trash { animation: trash 9s linear infinite; }
+@keyframes trash { from { transform: translateX(0); } to { transform: translateX(300px); } }
+.say { transform-box: fill-box; transform-origin: 50% 100%; animation: say 6s ease-in-out infinite; animation-delay: var(--d, 0s); opacity: 0; }
+@keyframes say { 0% { opacity: 0; transform: scale(.4); } 8% { opacity: 1; transform: scale(1.06); } 14%, 55% { opacity: 1; transform: scale(1); } 66%, 100% { opacity: 0; transform: scale(.9); } }
+.tick { transform-box: fill-box; transform-origin: center; animation: popin .5s cubic-bezier(.3,1.4,.5,1) both; animation-delay: var(--d, 0s); }
+
+/* ---------- Clickable numbers inside pictures ---------- */
+.hot { cursor: pointer; outline: none; }
+.hot .ping { transform-box: fill-box; transform-origin: center; animation: ping 2.4s ease-out infinite; }
+@keyframes ping { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(1.7); opacity: 0; } }
+.hot .hotface { transform-box: fill-box; transform-origin: center; transition: transform .15s; }
+.hot:hover .hotface, .hot:focus-visible .hotface, .hot.on .hotface { transform: scale(1.18); }
+.hot:focus-visible .hotface circle { stroke: var(--focus); stroke-width: 5; }
+.waving { animation: waving 1s ease-in-out infinite alternate; }
+@keyframes waving { from { transform: rotate(-22deg); } to { transform: rotate(18deg); } }
+
 /* ---------- Facts band and map band ---------- */
 .facts { list-style: none; margin: 0; padding: 40px 0 8px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .facts li { padding: 22px 22px 20px; border-radius: 14px; background: rgba(255,255,255,.06); border: 1px solid var(--deep-line); box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
@@ -361,7 +420,7 @@ legend { padding: 0; font: 600 clamp(1.35rem, 2.8vw, 1.75rem)/1.3 var(--display)
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .drift, .rays, .cloud, .tw, .sunglow, .sunrays, .fly, .swimL, .bob, .glide, .wing { animation: none; }
+  .drift, .rays, .cloud, .tw, .sunglow, .sunrays, .fly, .swimL, .bob, .glide, .wing, .gx, .fi, .pop, .pulse, .warmband, .flowline, .nudge, .bobx, .growup, .spin, .spin2, .tidecycle, .tideswing, .tidebig, .tidesmall, .trash, .say, .waving, .hot .ping, .sway, .wave, .twinkle, .travel, .bubble, .seeddrift, .blocked, .tick { animation: none; }
   .fly { opacity: 0; }
   .water, .ring .val, .btn { transition: none; }
 }
@@ -453,8 +512,8 @@ const MODS = {
       alt: "A side view of a gently sloping coast showing land, a mangrove forest in the upper part of the tidal zone where the water rises and falls, and open sea.", art: "coast" },
     { title: "Three tricks for living in salt water",
       text: "Tangled roots grip the soft mud, so waves do not pull the tree away. Some roots poke up above the mud like snorkels, because mud under water has very little air. And mangroves handle salt in different ways. Some limit how much salt gets in, and some push salt out through their leaves.",
-      alt: "A mangrove tree with tangled roots in the mud, short roots standing up like snorkels, and salt crystals on its leaves.", art: "tricks",
-      chips: ["Roots grip the mud", "Roots stand up to breathe", "Salt is kept out or pushed out"], tips: ["Mangrove roots spread wide and tangle together. They hold the tree in soft mud, so waves and tides do not pull it over.", "Mud under water has very little air. Some roots poke up above the mud, like snorkels, so the tree can breathe.", "Sea water is salty. Some mangroves limit how much salt gets in. Others push salt out through their leaves, which is why salt crystals can form on them."] },
+      alt: "Two mangrove species side by side at a rising and falling tide. A red mangrove on the left has long roots that arch out from the trunk and grip the mud. A black mangrove on the right has thin roots that stand up out of the mud like snorkels, and white salt crystals on its leaves.", art: "tricks",
+      badges: ["Roots grip the mud", "Roots stand up to breathe", "Salt is kept out or pushed out"], tips: ["Mangrove roots spread wide and tangle together. They hold the tree in soft mud, so waves and tides do not pull it over.", "Mud under water has very little air. Some roots poke up above the mud, like snorkels, so the tree can breathe.", "Sea water is salty. Some mangroves limit how much salt gets in. Others push salt out through their leaves, which is why salt crystals can form on them."] },
     { title: "Where mangroves grow",
       text: "Mangroves grow along warm coasts, mostly in the tropics, within about 30 degrees of the equator. You find them in places like Southeast Asia, Africa, Australia and Central and South America. They need warmth all year, because a hard freeze can kill them. They also need calm, sheltered water, such as bays and river mouths, because strong waves wash away young seedlings.",
       alt: "A simplified diagram, not a map. A coastline runs from top to bottom. Mangrove trees grow along it only in the warm zone between 30 degrees north and 30 degrees south of the equator. Outside that zone it is too cold for most mangroves.", art: "belt",
@@ -462,7 +521,7 @@ const MODS = {
     { title: "A home for many",
       text: "A mangrove forest is also a home. Young fish shelter among the roots. Crabs, clams and oysters live on the trees. Birds nest in the branches. People fish and gather food along the edges.",
       alt: "A mangrove forest with small fish among the roots, a crab and oysters, a heron in the branches and a fishing boat.", art: "home",
-      chips: ["Young fish shelter in the roots", "Crabs and oysters live on the trees", "Birds nest in the branches", "People fish along the edges"], tips: ["The roots form a maze that small fish can slip through and larger hunters have a harder time following. Module 2 looks at this nursery role.", "Crabs, clams and oysters live on the roots and trunks and in the mud. They are part of the food chain, and some are food for people.", "Birds nest and rest in the branches, so the forest is a home above the water as well as below it.", "Families fish and gather food along the edges of mangrove forests. Module 2 shows how many coastal families depend on this."] },
+      badges: ["Young fish shelter in the roots", "Crabs and oysters live on the trees", "Birds nest in the branches", "People fish along the edges"], tips: ["The roots form a maze that small fish can slip through and larger hunters have a harder time following. Module 2 looks at this nursery role.", "Crabs, clams and oysters live on the roots and trunks and in the mud. They are part of the food chain, and some are food for people.", "Birds nest and rest in the branches, so the forest is a home above the water as well as below it.", "Families fish and gather food along the edges of mangrove forests. Module 2 shows how many coastal families depend on this."] },
     { title: "Putting it together",
       text: "A mangrove is one of a group of trees and shrubs that live in salty, tidal water. Their roots and leaves help them hold on, breathe and handle salt. They grow on warm, sheltered coasts, and many animals and people depend on them. A forest this unusual must be doing something useful. In the next module, you will see what.",
       alt: "Three round badges labeled Roots, Salt and Home.", art: "recap" }
@@ -523,7 +582,7 @@ const MODS = {
   screens: [
     { title: "Four jobs, one forest", lead: "A forest this unusual must be doing something useful. What?",
       text: "In Module 1 you met trees that grow in salty, tidal water and give many animals a home. This module looks at what that forest does for us. Mangroves do four jobs that matter to people. They slow waves, store carbon, shelter young fish, and help families earn a living. You will see how each one works.",
-      alt: "A mangrove forest at sunset with calm water among the roots.", art: "dusk" },
+      alt: "An animated cutaway of a mangrove forest. Waves from the left get smaller as they pass the roots. Carbon dioxide drifts toward the leaves, carbon is stored in the mud below, young fish swim among the roots, and a fishing boat floats on the surface.", art: "jobs", badges: ["Slows waves", "Stores carbon in the mud", "Shelters young fish", "Supports fishing families"], tips: ["Roots and trunks take force out of moving water, so waves are smaller by the time they reach land. In very severe storms, a study found mangroves cut flood depths by 15 to 20 percent, and by more than 70 percent in some places.", "Mangrove mud is soaked with water, so dead leaves and roots rot slowly. The carbon stays locked in the mud for a very long time.", "The roots form a maze where young fish, shrimp and crabs can hide and find food while they grow up.", "Many coastal families fish, gather crabs and shellfish, and sell what they catch. In Panama, fishing is the main source of income in many small towns on both coasts."] },
     { title: "A wall of roots against waves",
       text: "When a storm pushes waves toward the shore, the waves hit a thicket of roots and trunks. Each root takes a little force out of the water, so the waves that reach land are smaller and weaker. A study from Delft University of Technology looked at very severe storms, the kind with a 1 in 100 chance of happening in any year. It found that mangroves cut flood depths by 15 to 20 percent, and by more than 70 percent in some places. Mangroves are not a perfect shield. A very big storm can still flood a coast.",
       alt: "Tall waves on the left shrink as they pass through a belt of mangrove trees, so only small waves reach the houses on the right.", art: "waves",
@@ -538,7 +597,7 @@ const MODS = {
       chips: ["Roots make a hiding maze", "Young fish grow up safely", "Adults move out to open water"], tips: ["Small animals can slip between the roots. Larger hunters have a harder time following them.", "There is plenty of food in the mud and water, so young fish, shrimp and crabs can grow up in the shelter of the roots.", "As they grow, many move out to reefs and open water, where people catch them. How much one forest adds to the local catch varies from place to place."], plain: true },
     { title: "A living for coastal families",
       text: "Around the world, many coastal families fish, gather crabs and shellfish, and sell what they catch. They depend on healthy mangroves to keep that work going. In Panama, for example, fishing is the main source of income in many small towns on both the Pacific and the Caribbean coasts, and mangroves help support those fisheries. When a forest is cleared, the shelter for young fish goes with it, and the families who fish nearby can lose income.",
-      alt: "A small fishing village beside a mangrove forest, with boats on the water and houses on the shore.", art: "village",
+      alt: "An animated shore scene. A fisher brings a catch of fish and crabs in a boat to the beach, and a market stall on dry land sells fish, while fish jump from the water.", art: "livelihood",
       chips: ["Fishing", "Gathering crabs and shellfish", "Selling the catch"], tips: ["In Panama, fishing is the main source of income in many small towns on both the Pacific and the Caribbean coasts, and mangroves help support those fisheries.", "Many coastal families gather crabs and shellfish from mangrove areas, for food and to sell.", "Families sell what they catch. If a forest is cleared and the shelter for young fish goes with it, the families who fish nearby can lose income."], plain: true },
     { title: "Putting it together",
       text: "Mangroves slow waves, store carbon, shelter young fish, and help families earn a living. They do all four jobs for free, but only while the forest is standing. If they are this useful, why are they disappearing? That is the question for the next module.",
@@ -677,7 +736,7 @@ const MODS = {
   screens: [
     { title: "Some forests can come back", lead: "Can the damage be undone?",
       text: "Module 3 showed that mangroves are being lost, but it also showed regrowth. Global Mangrove Watch counts about 3,160 square miles of lost mangroves as restorable, roughly one and a half times the size of Delaware. That is a map estimate. Whether a particular site can really recover depends on conditions on the ground, and on how the work is done. The next two screens show what goes wrong and what goes right.",
-      alt: "A mangrove forest at high tide.", art: "forest" },
+      alt: "An animated drawing of a cleared shoreline in three stages from left to right: bare mud with tree stumps, young seedlings taking hold, and young mangrove trees. A tide rises and falls, and an arrow marks time passing.", art: "regrowth" },
     { title: "Why planting often fails",
       text: "Many restoration projects plant seedlings where mangroves never grew well. A global report finds that many were placed on tidal flats and shallow seagrass beds, where tides flood the site and stop mangroves from settling in. These projects often fail, with few seedlings surviving, and they can harm the seagrass or flat next to them. Mangrove roots need to be wet for part of the day and dry for part. A site that is always too wet is the wrong site, however many seedlings go in.",
       alt: "A gently sloping coast with seedlings planted low on the shore, where water covers them, marked with an X, and seedlings in the upper tidal zone marked with a check.", art: "siting",
@@ -688,7 +747,7 @@ const MODS = {
       chips: ["Find out why the forest left", "Fix the water flow", "Watch what comes back"], tips: ["Before doing anything, find the cause. At the example site, dirt piles were blocking the tide.", "Crews removed the dirt piles and shaped the ground so the tide could flow in and out again.", "Nothing was planted. Seeds from nearby healthy trees took root, all three local kinds of mangrove came back, and fish and birds followed."] },
     { title: "What is the blue economy?",
       text: "The World Bank defines the blue economy as \"the sustainable use of ocean resources for economic growth, improved livelihoods, and jobs while preserving the health of the ocean ecosystem.\" In plain words, it means earning a living from the sea in a way that does not use it up. On a mangrove coast, that can mean fishing that keeps the young-fish nursery intact, so there are still fish next year.",
-      alt: "A fishing boat and small fish beside a mangrove forest.", art: "bluecoast" },
+      alt: "A circle of three steps with a dot traveling around it: the mangrove nursery stays intact, fish grow up, and families fish, which leads back to a healthy nursery, so there are still fish next year.", art: "bluecycle" },
     { title: "Case study: Panama, the problem",
       text: "Panama has more mangrove forest than any other country in Central America, on both its Pacific and Caribbean coasts. Even so, it has lost almost half of its mangroves in about 50 years, since 1972, mainly to city growth and the clearing of land for farms. Then came a second blow. In 2015 and 2016 a drought hit, and rainfall was 26 percent below average. In some areas of Panama Bay, up to 80 percent of the mangrove trees died, mostly black mangroves, which are sensitive to drought.",
       alt: "A bar showing that Panama has lost almost half of its mangroves since 1972, with a note about the 2015 and 2016 drought.", art: "panamaLoss" },
@@ -697,10 +756,10 @@ const MODS = {
       alt: "A timeline: 1972 to 2022, almost half lost; 2015 to 2016, drought kills many trees in some areas; later, new seedlings grow back.", art: "panamaTime" },
     { title: "Case study: who benefits, and what is uncertain",
       text: "People who fish in small towns on both coasts rely on mangroves for income. Mangroves also filter water, trap mud, reduce erosion and soften flooding. What is still uncertain? Panama's Pacific and Caribbean coasts are very different in tides and in the kinds of mangroves, so what works on one may not work on the other. Researchers say Panama also needs more capacity in government and in communities, and more long-term data on how much carbon its mangroves hold. And trash washing into the forests still threatens the recovery.",
-      alt: "A calm mangrove shore at dawn.", art: "shore" },
+      alt: "Two animated panels. On Panama's Pacific coast the tide rises and falls a long way, and on its Caribbean coast the tide changes only a little. On both coasts, trash floats toward the mangrove roots.", art: "panamaCoasts" },
     { title: "Case study: Trees for Life in Panama",
       text: "Trees for Life is an initiative of Worldview Development USA, the nonprofit behind this course. It funds mangrove reforestation in Panama in partnership with Worldview International Foundation, or WIF. The Panama project is at its launch stage. Gifts are meant to pay for the work that comes before planting, and then for putting trees in the ground. Trees for Life also offers free mangrove lessons through the Worldview Mangrove Virtual University. When you look at any restoration group, including this one, Module 5 gives you three questions to ask.",
-      alt: "A mangrove shore at dusk with a bird gliding overhead.", art: "dusk",
+      alt: "An animated drawing with a label reading Trees for Life, Panama. On the left, survey stakes with waving flags mark a site, labeled Groundwork first. On the right, seedlings grow in a row, labeled Then trees in the ground.", art: "panamaProject",
       link: { text: "Visit Trees for Life", url: "https://www.planttreesforlife.org/" } },
     { title: "Putting it together",
       text: "Restoration works best when the site is right, the water flows the way mangroves need, and local people are involved. Planting seedlings in the wrong place can fail. Panama shows both sides: heavy losses to people and drought, and real recovery when nature gets a chance. The blue economy idea ties it together, because healthy coasts keep jobs going. So is there anything you can do from where you are?",
@@ -765,7 +824,7 @@ const MODS = {
       alt: "Three badges joined by a line: You, Shops and food, and Mangrove coast.", art: "reach" },
     { title: "Action 1: Share what you learned",
       text: "The first step costs nothing. Most people have never heard what mangroves do. Pick one fact that surprised you, such as roots that slow storm waves or mud that stores carbon, and tell one person. People who know why mangroves matter can make better choices, and that begins with a conversation.",
-      alt: "A speech bubble badge labeled Share.", art: "recapShare" },
+      alt: "Three people in a row. A speech bubble with a mangrove tree appears above each one in turn, showing one fact passing from person to person.", art: "shareChain" },
     { title: "Action 2: Ask where it comes from",
       text: "Module 3 showed that about 43 percent of mangrove loss from 2000 to 2020 came from clearing for fish and shrimp ponds, oil palm and rice. You are linked to that through what you buy, such as farmed shrimp and products with palm oil. In Peru, one study found that shrimp farms had replaced 17 percent of the country's mangrove forests. The link is real but indirect. One purchase will not save a forest, and no label is a guarantee. What you can do is ask stores and restaurants where their shrimp and palm oil come from, and notice whether they can answer.",
       alt: "A chain of five steps: a mangrove is cleared, a pond is built, shrimp are raised, a store or restaurant sells them, and they reach your plate. A note says not every farm is built on cleared mangrove.", art: "chain" },
@@ -775,7 +834,7 @@ const MODS = {
       chips: ["Studied the water first", "Tracks survival for years", "Local people take part"], tips: ["Did the group study the water and tides at the site before planting? Module 4 showed why that matters.", "Do they report how many trees are still alive years later, including the failures, not just how many they planted?", "Researchers in Panama say local participation is needed. A good group will be glad to answer."], plain: true },
     { title: "Stay connected",
       text: "If you want to follow mangrove work, you can visit worldviewusa.org to see Worldview USA's latest updates. This is optional, and nothing in the course depends on it. Whatever you choose, one small step you will actually take is worth more than a big plan you will not.",
-      alt: "A calm mangrove shore at dawn.", art: "shore", link: { text: "Visit worldviewusa.org", url: SITE } },
+      alt: "An animated drawing of a girl and a boy standing on the shore waving, with an envelope traveling to them from a mangrove coast along a dotted path.", art: "connect", link: { text: "Visit worldviewusa.org", url: SITE } },
     { title: "Putting it together",
       text: "You can help from any town in the US. Share what you learned. Ask where farmed shrimp and palm oil come from. Back restoration groups that study the water, track results and include local people. Mangroves need the whole story to be told, and you are now able to tell it. A final quiz is planned to bring the five modules together.",
       alt: "Three round badges labeled Share, Ask and Back.", art: "recap5" }
@@ -966,7 +1025,7 @@ function forest({ id, w, h, waterY, sunX, sunY, sunR, trees, hero, extra = "", e
 </svg>`;
 }
 
-const badge = (x, y, n) => `<g><circle cx="${x}" cy="${y}" r="22" fill="#4db749" stroke="#0a2342" stroke-width="3"/><text x="${x}" y="${y + 9}" text-anchor="middle" font-family="Figtree, system-ui, sans-serif" font-weight="800" font-size="26" fill="#0a2342">${n}</text></g>`;
+const badge = (x, y, n) => `<g class="hot" tabindex="0" role="button" data-n="${n}"><circle class="ping" cx="${x}" cy="${y}" r="22" fill="none" stroke="#4db749" stroke-width="3"/><circle cx="${x}" cy="${y}" r="38" fill="transparent"/><g class="hotface"><circle cx="${x}" cy="${y}" r="22" fill="#4db749" stroke="#0a2342" stroke-width="3"/><text x="${x}" y="${y + 9}" text-anchor="middle" font-family="Figtree, system-ui, sans-serif" font-weight="800" font-size="26" fill="#0a2342">${n}</text></g></g>`;
 const label = (x, y, t, o = {}) => `<text x="${x}" y="${y}" text-anchor="${o.anchor || "middle"}" font-family="Figtree, system-ui, sans-serif" font-weight="${o.weight || 700}" font-size="${o.size || 26}" style="fill:${o.fill || "#0a2342"}">${t}</text>`;
 
 const ART = {
@@ -1002,8 +1061,8 @@ const ART = {
     const pts = []; for (let y = 0; y <= 500; y += 10) pts.push(`${cx(y).toFixed(1)} ${y}`);
     const coast = "M" + pts.join(" L");
     const land = `M0 0 L${pts.join(" L")} L${cx(500).toFixed(1)} 500 L0 500Z`;
-    const tr = [178, 210, 242, 274, 306, 338].map(y => U("mtree", cx(y) - 8, y - 44, 38, 48)).join("");
-    const flake = (x, y) => `<g transform="translate(${x} ${y})" stroke="#4a7fa8" stroke-width="4" stroke-linecap="round">${[0, 60, 120].map(r => `<path d="M-18 0 H18" transform="rotate(${r})"/>`).join("")}</g>`;
+    const tr = [178, 210, 242, 274, 306, 338].map((y, i) => `<g class="sway" style="animation-delay:-${i * .7}s">${U("mtree", cx(y) - 8, y - 44, 38, 48)}</g>`).join("");
+    const flake = (x, y) => `<g transform="translate(${x} ${y})"><g class="spin" stroke="#4a7fa8" stroke-width="4" stroke-linecap="round">${[0, 60, 120].map(r => `<path d="M-18 0 H18" transform="rotate(${r})"/>`).join("")}</g></g>`;
     return `<svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
     <defs>
       <linearGradient id="bsea" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b9e3f5"/><stop offset="1" stop-color="#86c8ec"/></linearGradient>
@@ -1012,7 +1071,7 @@ const ART = {
     <rect width="800" height="500" fill="url(#bsea)"/>
     <path d="${land}" fill="#d5dcd8"/>
     <g clip-path="url(#bland)"><rect y="150" width="800" height="200" fill="#e6c98a"/></g>
-    <rect y="150" width="800" height="200" fill="#f6b84a" opacity=".16"/>
+    <rect class="warmband" y="150" width="800" height="200" fill="#f6b84a" opacity=".16"/>
     <path d="${coast}" fill="none" stroke="#8a7a62" stroke-width="3"/>
     <g stroke="#0a2342" stroke-width="2.5" stroke-dasharray="10 8" opacity=".75"><path d="M0 150 H800"/><path d="M0 250 H800"/><path d="M0 350 H800"/></g>
     ${tr}
@@ -1045,7 +1104,7 @@ const ART = {
       ${badge(180, 340, 1)}${badge(250, 262, 2)}${badge(640, 116, 3)}${badge(728, 232, 4)}` });
   },
   recap() {
-    const disc = (x, inner, name) => `<circle cx="${x}" cy="215" r="98" fill="#0054a5"/><circle cx="${x}" cy="215" r="98" fill="none" stroke="#4db749" stroke-width="4"/>${inner}${label(x, 392, name, { size: 34, fill: "var(--ink)" })}`;
+    const disc = (x, inner, name) => { const k = (x - 160) / 240; return `<g class="pop" style="--d:${(k * .3).toFixed(1)}s"><circle cx="${x}" cy="215" r="98" fill="#0054a5"/><circle cx="${x}" cy="215" r="98" fill="none" stroke="#4db749" stroke-width="4"/></g><g class="bobx" style="animation-delay:-${(k * .9).toFixed(1)}s">${inner}</g><g class="fi" style="--d:${(.3 + k * .3).toFixed(1)}s">${label(x, 392, name, { size: 34, fill: "var(--ink)" })}</g>`; };
     const roots = `<g fill="none" stroke="#f3e9d2" stroke-linecap="round" stroke-width="7"><path d="M160 190 C152 218 130 234 114 276"/><path d="M160 190 C158 224 152 252 150 288"/><path d="M160 190 C166 222 178 248 186 288"/><path d="M160 190 C170 218 194 230 210 272"/></g><path d="M160 190 V164" stroke="#f3e9d2" stroke-width="12" stroke-linecap="round"/><circle cx="160" cy="152" r="26" fill="#55b07c"/>`;
     const saltIcon = `<path d="M400 150 C350 170 340 230 372 276 C420 262 452 210 400 150Z" fill="#55b07c"/><path d="M400 160 C392 200 384 240 372 272" stroke="#2b7a4b" stroke-width="4" fill="none"/>${[[430, 168], [446, 208], [350, 150]].map(([x, y]) => `<path d="M${x} ${y - 11} l9 11 l-9 11 l-9 -11Z" fill="#fff"/>`).join("")}`;
     const homeIcon = `${U("fish", 560, 190, 100, 50)}${U("fish", 600, 246, 70, 35)}<path d="M572 160 q14 -22 36 -6 q22 -18 40 6" fill="none" stroke="#f3e9d2" stroke-width="7" stroke-linecap="round"/>`;
@@ -1138,11 +1197,10 @@ function discs(items, o = {}) {
   const xs = n === 4 ? [100, 300, 500, 700] : wide ? [130, 400, 670] : n === 3 ? [160, 400, 640] : [400];
   const r = n === 4 ? 84 : wide ? 84 : n === 3 ? 98 : 124, sc = n === 4 ? .84 : wide ? .86 : n === 3 ? 1 : 1.25;
   const ls = o.labelSize || (n === 4 ? 32 : n === 3 ? 34 : 42), cy = 205;
-  const link = o.connect ? xs.slice(0, -1).map((x, i) => `<path d="M${x + r + 10} ${cy} H${xs[i + 1] - r - 10}" stroke="var(--ink)" stroke-width="3" stroke-dasharray="3 9" stroke-linecap="round"/>`).join("") : "";
+  const link = o.connect ? xs.slice(0, -1).map((x, i) => `<path d="M${x + r + 10} ${cy} H${xs[i + 1] - r - 10}" stroke="var(--ink)" stroke-width="3" stroke-dasharray="3 9" stroke-linecap="round" class="flowline"/>`).join("") : "";
   const body = items.map((it, i) => {
     const x = xs[i];
-    return `<circle cx="${x}" cy="${cy}" r="${r}" fill="${DEEPG}"/><circle cx="${x}" cy="${cy}" r="${r}" fill="none" stroke="#4db749" stroke-width="4"/>
-    <g transform="translate(${x} ${cy}) scale(${sc})">${ICO[it.ico]()}</g>${label(x, cy + r + 58, it.name, { size: ls, fill: "var(--ink)" })}`;
+    return `<g class="pop" style="--d:${(i * .3).toFixed(1)}s"><circle cx="${x}" cy="${cy}" r="${r}" fill="${DEEPG}"/><circle cx="${x}" cy="${cy}" r="${r}" fill="none" stroke="#4db749" stroke-width="4"/><g class="bobx" style="animation-delay:-${(i * .9).toFixed(1)}s"><g transform="translate(${x} ${cy}) scale(${sc})">${ICO[it.ico]()}</g></g></g><g class="fi" style="--d:${(.3 + i * .3).toFixed(1)}s">${label(x, cy + r + 58, it.name, { size: ls, fill: "var(--ink)" })}</g>`;
   }).join("");
   return flat("d", link + body);
 }
@@ -1213,9 +1271,9 @@ Object.assign(ART, {
     let cells = "";
     for (let i = 0; i < 100; i++) {
       const x = 50 + (i % 10) * 35, y = 75 + Math.floor(i / 10) * 35;
-      cells += `<rect x="${x}" y="${y}" width="30" height="30" rx="3" fill="#3f9a68"/>`;
-      if (i >= 97) cells += `<rect x="${x}" y="${y}" width="30" height="30" rx="3" fill="#d9623b"/>`;
-      if (i === 96) cells += `<rect x="${x}" y="${y}" width="12" height="30" rx="3" fill="#d9623b"/>`;
+      cells += `<rect class="pop" style="--d:${(i * .016).toFixed(2)}s" x="${x}" y="${y}" width="30" height="30" rx="3" fill="#3f9a68"/>`;
+      if (i >= 97) cells += `<g class="pulse"><rect class="pop" style="--d:1.9s" x="${x}" y="${y}" width="30" height="30" rx="3" fill="#d9623b"/></g>`;
+      if (i === 96) cells += `<g class="pulse"><rect class="pop" style="--d:1.9s" x="${x}" y="${y}" width="12" height="30" rx="3" fill="#d9623b"/></g>`;
     }
     return flat("g", `${cells}
       ${lines(430, 124, ["Each square is 1 percent", "of the mangroves that", "existed in 1996."], 36, { anchor: "start", size: 27, fill: "var(--ink)" })}
@@ -1228,35 +1286,35 @@ Object.assign(ART, {
     const rows = [["Asia", 1086, 130], ["Africa", 250, 240], ["Pacific", 202, 350]];
     const sc = 440 / 1086;
     return flat("r", `${label(50, 70, "Mangrove lost, 1996 to 2020 (square miles)", { anchor: "start", size: 28, fill: "var(--ink)" })}
-      ${rows.map(([n, v, y]) => `${label(170, y + 44, n, { anchor: "end", size: 32, fill: "var(--ink)" })}<rect x="190" y="${y}" width="${(v * sc).toFixed(0)}" height="64" rx="4" fill="#d9623b"/>${label(190 + v * sc + 14, y + 45, v.toLocaleString("en-US"), { anchor: "start", size: 34, fill: "var(--ink)" })}`).join("")}
+      ${rows.map(([n, v, y]) => `${label(170, y + 44, n, { anchor: "end", size: 32, fill: "var(--ink)" })}<g class="gx" style="--d:${(.2 + rows.findIndex(r => r[0] === n) * .35).toFixed(2)}s"><rect x="190" y="${y}" width="${(v * sc).toFixed(0)}" height="64" rx="4" fill="#d9623b"/></g><g class="fi" style="--d:${(.9 + rows.findIndex(r => r[0] === n) * .35).toFixed(2)}s">${label(190 + v * sc + 14, y + 45, v.toLocaleString("en-US"), { anchor: "start", size: 34, fill: "var(--ink)" })}</g>`).join("")}
       ${label(50, 462, "Other regions lost the rest.", { anchor: "start", size: 24, fill: "var(--muted)" })}`);
   },
 
   drivers() {
     const W = 700, a = W * .433, b = W * .26, c = W - a - b;
     return flat("dr", `${label(50, 88, "What drove mangrove loss, 2000 to 2020", { anchor: "start", size: 30, fill: "var(--ink)" })}
-      <rect x="50" y="130" width="${a}" height="96" fill="${CLAY}"/><rect x="${50 + a}" y="130" width="${b}" height="96" fill="#2b7f9c"/><rect x="${50 + a + b}" y="130" width="${c}" height="96" fill="#7d6e58"/>
-      ${label(50 + a / 2, 196, "43%", { size: 46, fill: "#fff" })}${label(50 + a + b / 2, 196, "26%", { size: 46, fill: "#fff" })}${label(50 + a + b + c / 2, 196, "31%", { size: 46, fill: "#fff" })}
+      <g class="gx" style="--d:.2s"><rect x="50" y="130" width="${a}" height="96" fill="${CLAY}"/></g><g class="gx" style="--d:.7s"><rect x="${50 + a}" y="130" width="${b}" height="96" fill="#2b7f9c"/></g><g class="gx" style="--d:1.1s"><rect x="${50 + a + b}" y="130" width="${c}" height="96" fill="#7d6e58"/></g>
+      <g class="fi" style="--d:1s">${label(50 + a / 2, 196, "43%", { size: 46, fill: "#fff" })}${label(50 + a + b / 2, 196, "26%", { size: 46, fill: "#fff" })}${label(50 + a + b + c / 2, 196, "31%", { size: 46, fill: "#fff" })}</g>
       ${lines(50 + a / 2, 278, ["Ponds, oil palm", "and rice fields"], 32, { size: 26, fill: "var(--ink)" })}
       ${lines(50 + a + b / 2, 278, ["Natural", "causes"], 32, { size: 26, fill: "var(--ink)" })}
       ${lines(50 + a + b + c / 2, 278, ["Other", "causes"], 32, { size: 26, fill: "var(--ink)" })}
       ${label(50, 380, "From the 2000s to the 2010s, as a share of loss:", { anchor: "start", size: 25, fill: "var(--muted)" })}
-      ${lines(50, 436, ["Ponds fell from 31% to 21%.", "Oil palm rose from 4% to 14%."], 36, { anchor: "start", size: 27, fill: "var(--ink)" })}`);
+      <g class="fi" style="--d:1.6s">${lines(50, 436, ["Ponds fell from 31% to 21%.", "Oil palm rose from 4% to 14%."], 36, { anchor: "start", size: 27, fill: "var(--ink)" })}</g>`);
   },
 
   balance() {
     const sc = 370 / 789;
     const rows = [["Indonesia", 789, 190], ["Myanmar", 563, 255], ["Malaysia", 150, 320], ["Nigeria", 120, 385]];
     return flat("bl", `${label(50, 62, "Square miles, about 40 years", { anchor: "start", size: 28, fill: "var(--ink)" })}
-      ${label(250, 128, "World, net", { anchor: "end", size: 28, fill: "var(--ink)" })}<rect x="270" y="98" width="${(184 * sc).toFixed(0)}" height="48" rx="4" fill="#2f8f5b"/>${label(270 + 184 * sc + 14, 132, "184 gained", { anchor: "start", size: 28, fill: "var(--ink)" })}
+      ${label(250, 128, "World, net", { anchor: "end", size: 28, fill: "var(--ink)" })}<g class="gx" style="--d:.2s"><rect x="270" y="98" width="${(184 * sc).toFixed(0)}" height="48" rx="4" fill="#2f8f5b"/></g><g class="fi" style="--d:.9s">${label(270 + 184 * sc + 14, 132, "184 gained", { anchor: "start", size: 28, fill: "var(--ink)" })}</g>
       <path d="M50 168 H750" stroke="var(--ink)" stroke-opacity=".3" stroke-width="2"/>
-      ${rows.map(([n, v, y]) => `${label(250, y + 33, n, { anchor: "end", size: 28, fill: "var(--ink)" })}<rect x="270" y="${y}" width="${(v * sc).toFixed(0)}" height="48" rx="4" fill="#d9623b"/>${label(270 + v * sc + 14, y + 34, v + " lost", { anchor: "start", size: 28, fill: "var(--ink)" })}`).join("")}`);
+      ${rows.map(([n, v, y]) => `${label(250, y + 33, n, { anchor: "end", size: 28, fill: "var(--ink)" })}<g class="gx" style="--d:${(1 + rows.findIndex(r => r[0] === n) * .3).toFixed(2)}s"><rect x="270" y="${y}" width="${(v * sc).toFixed(0)}" height="48" rx="4" fill="#d9623b"/></g><g class="fi" style="--d:${(1.6 + rows.findIndex(r => r[0] === n) * .3).toFixed(2)}s">${label(270 + v * sc + 14, y + 34, v + " lost", { anchor: "start", size: 28, fill: "var(--ink)" })}</g>`).join("")}`);
   },
 
   spans() {
     return flat("sp", `${label(50, 74, "Two reports, two spans of time", { anchor: "start", size: 30, fill: "var(--ink)" })}
-      <rect x="50" y="130" width="360" height="64" rx="4" fill="#d9623b"/>${label(50, 232, "Net loss: 1996 to 2020", { anchor: "start", size: 28, fill: "var(--ink)" })}${label(50, 266, "Older version of the data", { anchor: "start", size: 24, fill: "var(--muted)" })}
-      <rect x="50" y="318" width="600" height="64" rx="4" fill="#2f8f5b"/>${label(50, 420, "Net gain: about 40 years", { anchor: "start", size: 28, fill: "var(--ink)" })}${label(50, 454, "Newer version of the data", { anchor: "start", size: 24, fill: "var(--muted)" })}`);
+      <g class="gx" style="--d:.2s"><rect x="50" y="130" width="360" height="64" rx="4" fill="#d9623b"/></g>${label(50, 232, "Net loss: 1996 to 2020", { anchor: "start", size: 28, fill: "var(--ink)" })}${label(50, 266, "Older version of the data", { anchor: "start", size: 24, fill: "var(--muted)" })}
+      <g class="gx" style="--d:1s"><rect x="50" y="318" width="600" height="64" rx="4" fill="#2f8f5b"/></g>${label(50, 420, "Net gain: about 40 years", { anchor: "start", size: 28, fill: "var(--ink)" })}${label(50, 454, "Newer version of the data", { anchor: "start", size: 24, fill: "var(--muted)" })}`);
   },
 
   readfig() { return discs([{ name: "What?", ico: "measure" }, { name: "When?", ico: "cal" }, { name: "Where?", ico: "pin" }]); },
@@ -1272,7 +1330,7 @@ Object.assign(ART, {
     const good = [338, 374].map(x => seedling(x, groundY(x))).join("");
     const cross = (x, y) => `<g><circle cx="${x}" cy="${y}" r="24" fill="#c4512f" stroke="#fff" stroke-width="3"/><path d="M${x - 9} ${y - 9} l18 18 M${x + 9} ${y - 9} l-18 18" stroke="#fff" stroke-width="5" stroke-linecap="round"/></g>`;
     const tick = (x, y) => `<g><circle cx="${x}" cy="${y}" r="24" fill="#2f8f5b" stroke="#fff" stroke-width="3"/><path d="M${x - 11} ${y + 1} l8 9 l15 -18" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g>`;
-    return coastScene({ trees: false, labelled: false, overlay: `${bad}${good}${cross(562, 268)}${tick(356, 262)}
+    return coastScene({ trees: false, labelled: false, overlay: `${bad}${good}<g clip-path="url(#cclip)"><g class="pulse"><rect x="505" y="${groundY(560) - 52}" width="125" height="60" fill="#3cb7ea" opacity=".5"/></g><g class="tidecycle"><rect x="312" y="${groundY(356) - 20}" width="100" height="34" fill="#3cb7ea" opacity=".6"/></g></g>${cross(562, 268)}${tick(356, 262)}
       ${label(562, 226, "Too wet", { size: 28, fill: "var(--ink)" })}${label(356, 220, "Right zone", { size: 28, fill: "var(--ink)" })}
       ${label(130, 104, "Land", { size: 28, fill: "var(--ink)" })}${label(790, 312, "High tide", { anchor: "end", size: 24, fill: "var(--ink)" })}${label(790, 362, "Low tide", { anchor: "end", size: 24, fill: "var(--ink)" })}` });
   },
@@ -1283,9 +1341,9 @@ Object.assign(ART, {
       const band = after ? 400 : 132;
       const mound = after ? "" : `<path d="M${ox + 100} ${G} L${ox + 175} ${G - 92} L${ox + 250} ${G}Z" fill="#8c7b5f"/>`;
       const stumps = after
-        ? [276, 322, 368].map((x, i) => `<g transform="translate(${ox + x} ${G}) scale(1.5) translate(${-x} 0)">${seedling(x, 0)}</g>`).join("")
+        ? [276, 322, 368].map((x, i) => `<g transform="translate(${ox + x} ${G}) scale(1.5) translate(${-x} 0)"><g class="growup" style="--d:${(i * .9).toFixed(1)}s">${seedling(x, 0)}</g></g>`).join("")
         : [276, 322, 368].map(x => `<path d="M${ox + x} ${G} v-34" stroke="#5a4a38" stroke-width="9" stroke-linecap="round"/>`).join("");
-      const seeds = after ? [182, 222, 262].map((x, i) => `<ellipse cx="${ox + x}" cy="${G - 12 + (i % 2) * 3}" rx="11" ry="6" fill="#55b07c" stroke="#2b7a4b" stroke-width="1.5"/>`).join("") + arrowH(ox + 112, ox + 190, G - 70) : "";
+      const seeds = after ? [182, 222, 262].map((x, i) => `<g class="seeddrift" style="--d:${(i * 1.2).toFixed(1)}s"><ellipse cx="${ox + x}" cy="${G - 12 + (i % 2) * 3}" rx="11" ry="6" fill="#55b07c" stroke="#2b7a4b" stroke-width="1.5"/></g>`).join("") + `<g class="nudge">${arrowH(ox + 112, ox + 190, G - 70)}</g>` : `<g class="blocked">${arrowH(ox + 20, ox + 92, G - 70, "#0054a5")}</g>`;
       return `${U("mtree", ox + 2, G - 137, 112, 140)}
         <rect x="${ox}" y="${G - 26}" width="${band}" height="28" fill="#3cb7ea" opacity=".55"/>${mound}${stumps}${seeds}
         <path d="M${ox} ${G} H${ox + 400} V500 H${ox}Z" fill="#6e5f4a"/>${after ? `<rect x="${ox}" y="${G - 26}" width="400" height="26" fill="#3cb7ea" opacity=".3"/>` : ""}
@@ -1297,16 +1355,18 @@ Object.assign(ART, {
 
   panamaLoss() {
     return flat("pl", `${label(50, 78, "Panama's mangroves since 1972", { anchor: "start", size: 34, fill: "var(--ink)" })}
-      <rect x="50" y="116" width="364" height="96" fill="#3f9a68"/><rect x="414" y="116" width="336" height="96" fill="${CLAY}"/>
-      ${label(232, 178, "Still here", { size: 36, fill: "#fff" })}${label(582, 178, "Lost", { size: 36, fill: "#fff" })}
+      <g class="gx" style="--d:.2s"><rect x="50" y="116" width="364" height="96" fill="#3f9a68"/></g><g class="gx" style="--d:.9s"><rect x="414" y="116" width="336" height="96" fill="${CLAY}"/></g>
+      <g class="fi" style="--d:1.2s">${label(232, 178, "Still here", { size: 36, fill: "#fff" })}${label(582, 178, "Lost", { size: 36, fill: "#fff" })}</g>
       ${lines(50, 276, ["Almost half lost in about 50 years,", "mainly to city growth and farmland."], 38, { anchor: "start", size: 29, fill: "var(--ink)" })}
-      ${lines(50, 392, ["Then, in 2015 and 2016, a drought:", "up to 80% of trees died in some areas."], 38, { anchor: "start", size: 29, fill: "var(--ink)" })}`);
+      ${lines(50, 392, ["Then, in 2015 and 2016, a drought:", "up to 80% of trees died in some areas."], 38, { anchor: "start", size: 29, fill: "var(--ink)" })}${sunSvg(716, 400, 24)}`);
   },
 
   panamaTime() {
     const cols = [[140, "1972", ["Almost half of", "the mangroves", "lost in 50 years"]], [400, "2015 to 2016", ["A long drought:", "up to 80% of trees", "died in some areas"]], [660, "Afterward", ["New seedlings:", "some grew over", "six feet tall"]]];
-    return flat("pt", `<path d="M50 160 H750" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
-      ${cols.map(([x, yr, t]) => `<circle cx="${x}" cy="160" r="17" fill="#4db749" stroke="var(--ink)" stroke-width="3"/>${label(x, 236, yr, { size: 34, fill: "var(--ink)" })}${lines(x, 284, t, 34, { size: 25, fill: "var(--ink)" })}`).join("")}`);
+    return flat("pt", `<g class="gx" style="--d:.1s"><rect x="50" y="158" width="700" height="5" rx="2.5" fill="var(--ink)"/></g>
+      <g transform="translate(140 86) scale(.62)">${ICO.stump()}</g>${sunSvg(400, 100, 22)}<g transform="translate(660 140) scale(1.7)"><g class="growup">${seedling(0, 0)}</g></g>
+      ${cols.map(([x, yr, t], i) => `<g class="pop" style="--d:${(.5 + i * .7).toFixed(1)}s"><circle cx="${x}" cy="160" r="17" fill="#4db749" stroke="var(--ink)" stroke-width="3"/></g><g class="fi" style="--d:${(.7 + i * .7).toFixed(1)}s">${label(x, 236, yr, { size: 34, fill: "var(--ink)" })}${lines(x, 284, t, 34, { size: 25, fill: "var(--ink)" })}</g>`).join("")}
+      <circle class="travel" cx="50" cy="160" r="8" fill="#0054a5" style="--tx:700px"/>`);
   },
 
   chain() {
@@ -1334,7 +1394,7 @@ Object.assign(ART, {
       <linearGradient id="chWood" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b7834f"/><stop offset="1" stop-color="#8a5c33"/></linearGradient>
       <radialGradient id="chPlate" cx=".4" cy=".35" r=".85"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dfe6ea"/></radialGradient>
       <linearGradient id="chWin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe7a8"/><stop offset="1" stop-color="#f4b860"/></linearGradient>
-      ${[0, 1, 2, 3, 4].map(k => `<clipPath id="chc${k}"><circle r="62"/></clipPath>`).join("")}`;
+      ${[0, 1, 2, 3, 4].map(k => `<clipPath id="chc${k}"><circle r="62"/></clipPath>`).join("")}${shrimpDefs}`;
     const stump = (x, y, r) => `<ellipse cx="${x}" cy="${y + 7}" rx="${r}" ry="${r * .4}" fill="#5e4631"/><rect x="${x - r}" y="${y}" width="${r * 2}" height="9" fill="#7a5a3c"/><ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r * .4}" fill="#d9b98a" stroke="#8a6a4c" stroke-width="1"/><ellipse cx="${x}" cy="${y}" rx="${r * .55}" ry="${r * .22}" fill="none" stroke="#a98a60" stroke-width="1"/>`;
     const scenes = [
       /* 1 cleared: bare mud, stumps, one tree left */
@@ -1345,13 +1405,13 @@ Object.assign(ART, {
       `<rect x="-70" y="-70" width="140" height="140" fill="#6fae63"/><path d="M-70 -50 H70 M-70 54 H70" stroke="#5a9650" stroke-width="3" opacity=".6"/>
        <rect x="-50" y="-34" width="100" height="68" rx="9" fill="#d8caa0"/><rect x="-44" y="-28" width="88" height="56" rx="6" fill="url(#chP)"/>
        <g fill="none" stroke="#fff" stroke-linecap="round"><path d="M-36 -14 q8 -5 16 0 t16 0 t16 0 t16 0" stroke-opacity=".5" stroke-width="2"/><path d="M-30 4 q8 -5 16 0 t16 0 t16 0" stroke-opacity=".4" stroke-width="2"/><path d="M-36 20 q8 -5 16 0 t16 0 t16 0 t16 0" stroke-opacity=".3" stroke-width="2"/></g>
-       <g transform="translate(14 -6)"><rect x="-3" y="-3" width="6" height="6" fill="#fff"/>${[0, 90, 180, 270].map(r => `<rect x="-1.4" y="-14" width="2.8" height="11" transform="rotate(${r})" fill="#f4f8fa"/>`).join("")}<circle r="14" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="2"/></g>
+       <g transform="translate(14 -6)"><g class="spin2">${[0, 90, 180, 270].map(r => `<rect x="-1.4" y="-14" width="2.8" height="11" transform="rotate(${r})" fill="#f4f8fa"/>`).join("")}</g><rect x="-3" y="-3" width="6" height="6" fill="#fff"/><circle r="14" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="2"/></g>
        <rect x="-62" y="-4" width="14" height="8" fill="#b9a073"/>`,
       /* 3 shrimp raised: close up in water */
       `<rect x="-70" y="-70" width="140" height="140" fill="url(#chW)"/>${[[-30, -40, 14, 5], [20, -48, 18, 6], [40, -20, 12, 4], [-44, -10, 10, 3]].map(([x, y, rx, ry]) => `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="#fff" opacity=".18"/>`).join("")}
        <path d="M-70 46 C-30 40 30 44 70 40 V70 H-70Z" fill="url(#chA)"/>${[[-40, 54], [-8, 58], [30, 52], [52, 60]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2.4" fill="#b99660"/>`).join("")}
-       <g transform="translate(6 6) rotate(-8)">${shrimp({ sc: .95 })}</g>
-       ${[[-46, 22, 2.4], [-52, 6, 1.8], [40, -34, 2.2], [48, -12, 1.6]].map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="1"/>`).join("")}`,
+       <g class="bobx"><g transform="translate(22 4) rotate(-4)">${shrimp2({ sc: .62 })}</g></g>
+       ${[[-46, 40, 2.4], [-52, 30, 1.8], [44, 38, 2.2], [50, 26, 1.6]].map(([x, y, r], k) => `<g class="bubble" style="animation-delay:-${k * 1.1}s"><circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="1"/></g>`).join("")}`,
       /* 4 store or restaurant */
       `<rect x="-70" y="-70" width="140" height="140" fill="url(#chSky)"/>
        <rect x="-58" y="-44" width="116" height="92" fill="#e6d5b9"/>${Array.from({ length: 5 }, (_, r) => Array.from({ length: 8 }, (_, c) => `<rect x="${-56 + c * 14.5 + (r % 2) * 7}" y="${-42 + r * 18}" width="12.5" height="7" fill="#d9c3a0" opacity=".7"/>`).join("")).join("")}
@@ -1365,22 +1425,354 @@ Object.assign(ART, {
       /* 5 your plate: top view */
       `<rect x="-70" y="-70" width="140" height="140" fill="url(#chWood)"/>${[-52, -30, -8, 16, 40, 58].map((y, k) => `<path d="M-70 ${y} C-30 ${y - 3 + k % 2 * 4} 30 ${y + 3} 70 ${y - 2}" stroke="#6e4524" stroke-width="1.2" opacity=".35" fill="none"/>`).join("")}
        <ellipse cx="3" cy="5" rx="52" ry="50" fill="#000" opacity=".22"/><circle r="50" fill="url(#chPlate)" stroke="#cfd8de" stroke-width="2"/><circle r="36" fill="none" stroke="#e3e9ed" stroke-width="2"/>
-       <g transform="translate(-2 2) scale(.46) rotate(-20)">${shrimp({ sc: 1, body: "#f08a5d", dark: "#b94a2c", belly: "#f7c2a4" })}</g>
-       <g transform="translate(14 -14) scale(.38) rotate(35)">${shrimp({ sc: 1, body: "#f2976b", dark: "#b94a2c", belly: "#f7c2a4" })}</g>
-       <g transform="translate(-12 20) scale(.38) rotate(-100)">${shrimp({ sc: 1, body: "#ee8658", dark: "#b94a2c", belly: "#f7c2a4" })}</g>
-       <g transform="translate(26 22)"><circle r="10" fill="#f6d84a"/><circle r="8" fill="#fbe87a"/><path d="M0 0 L0 -8 M0 0 L7 -4 M0 0 L7 4 M0 0 L0 8 M0 0 L-7 4 M0 0 L-7 -4" stroke="#f6d84a" stroke-width="1" opacity=".9"/></g>
+       <g transform="translate(-8 -22) scale(.4) rotate(-12)">${shrimp2({ cooked: true, ants: false })}</g>
+       <g transform="translate(22 6) scale(.4) rotate(70)">${shrimp2({ cooked: true, ants: false })}</g>
+       <g transform="translate(-14 24) scale(.4) rotate(-170)">${shrimp2({ cooked: true, ants: false })}</g>
+       <g transform="translate(34 30)"><circle r="9" fill="#f6d84a"/><circle r="8" fill="#fbe87a"/><path d="M0 0 L0 -8 M0 0 L7 -4 M0 0 L7 4 M0 0 L0 8 M0 0 L-7 4 M0 0 L-7 -4" stroke="#f6d84a" stroke-width="1" opacity=".9"/></g>
        ${[[-30, -16], [-24, -26], [-34, -4], [30, 4]].map(([x, y]) => `<ellipse cx="${x}" cy="${y}" rx="3.4" ry="1.8" transform="rotate(${(x * 7) % 90} ${x} ${y})" fill="#3f9a4f"/>`).join("")}
        <g transform="translate(-64 -20) rotate(8)"><rect x="-1.6" y="-10" width="3.2" height="52" rx="1.6" fill="#c9d0d4"/><path d="M-5 -10 v-12 M0 -10 v-14 M5 -10 v-12 M-5 -10 h10" stroke="#c9d0d4" stroke-width="2.2" stroke-linecap="round" fill="none"/></g>`
     ];
     const nodes = [[80, ["Mangrove", "cleared"]], [240, ["Pond", "built"]], [400, ["Shrimp", "raised"]], [560, ["Store or", "restaurant"]], [720, ["Your", "plate"]]];
-    return flat("ch", `${nodes.map(([x, t], i) => `<g transform="translate(${x} 150)"><g clip-path="url(#chc${i})">${scenes[i]}</g><circle r="62" fill="none" stroke="#4db749" stroke-width="4"/></g>${lines(x, 248, t, 30, { size: 25, fill: "var(--ink)" })}${i < 4 ? arrowH(x + 70, x + 92, 150) : ""}`).join("")}
+    return flat("ch", `${nodes.map(([x, t], i) => `<g class="pop" style="--d:${(i * .5).toFixed(1)}s"><g transform="translate(${x} 150)"><g clip-path="url(#chc${i})">${scenes[i]}</g><circle r="62" fill="none" stroke="#4db749" stroke-width="4"/></g></g><g class="fi" style="--d:${(.2 + i * .5).toFixed(1)}s">${lines(x, 248, t, 30, { size: 25, fill: "var(--ink)" })}</g>${i < 4 ? `<g class="fi" style="--d:${(.3 + i * .5).toFixed(1)}s"><g class="nudge">${arrowH(x + 70, x + 88, 150)}</g></g>` : ""}`).join("")}
       ${lines(400, 376, ["Not every farm is built on cleared mangrove.", "The link is real, but indirect."], 40, { size: 29, fill: "var(--ink)" })}`, defs);
   },
 
   checklist() {
     const rows = ["Studied the water first", "Tracks survival for years", "Local people take part"];
     return flat("ck", `${label(50, 70, "Questions to ask a restoration group", { anchor: "start", size: 30, fill: "var(--ink)" })}
-      ${rows.map((t, i) => { const y = 110 + i * 110; return `<rect x="50" y="${y}" width="700" height="84" rx="12" style="fill:var(--surface)" stroke="var(--line)" stroke-width="2"/><circle cx="102" cy="${y + 42}" r="26" fill="#2f8f5b"/><path d="M90 ${y + 43} l9 10 l17 -20" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>${label(150, y + 53, t, { anchor: "start", size: 33, fill: "var(--ink)" })}`; }).join("")}`);
+      ${rows.map((t, i) => { const y = 110 + i * 110; return `<rect x="50" y="${y}" width="700" height="84" rx="12" style="fill:var(--surface)" stroke="var(--line)" stroke-width="2"/><g class="tick" style="--d:${(.4 + i * .6).toFixed(1)}s"><circle cx="102" cy="${y + 42}" r="26" fill="#2f8f5b"/><path d="M90 ${y + 43} l9 10 l17 -20" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>${label(150, y + 53, t, { anchor: "start", size: 33, fill: "var(--ink)" })}`; }).join("")}`);
+  }
+});
+
+
+/* =====================================================================
+   Unique, animated scenes. One picture per screen, no repeats.
+   ===================================================================== */
+const stumpSvg = (x, y, r) => `<ellipse cx="${x}" cy="${y + 7}" rx="${r}" ry="${r * .4}" fill="#4f3b29"/><rect x="${x - r}" y="${y}" width="${r * 2}" height="9" fill="#7a5a3c"/><ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r * .4}" fill="#d9b98a" stroke="#8a6a4c" stroke-width="1.2"/><ellipse cx="${x}" cy="${y}" rx="${r * .55}" ry="${r * .22}" fill="none" stroke="#a98a60" stroke-width="1.2"/>`;
+const mudGround = (g) => `<path d="M0 ${g} H800 V500 H0Z" fill="#8c7b5f"/><path d="M0 ${g + 42} C200 ${g + 36} 600 ${g + 36} 800 ${g + 42} V500 H0Z" fill="#6e5f4a"/>`;
+const cap = (x, y, t, o = {}) => label(x, y, t, { size: 26, weight: 600, fill: "#f3e9d2", ...o });
+
+/* Black mangrove (Avicennia): thin pencil roots rise from the mud, salt leaves out through the leaves. */
+function blackMangrove(cx, gy) {
+  const R = rng(11);
+  const blobs = [[cx, gy - 190, 62], [cx - 58, gy - 165, 44], [cx + 58, gy - 165, 44], [cx - 20, gy - 228, 38], [cx + 28, gy - 222, 36]];
+  let leaves = "", salt = "";
+  for (let i = 0; i < 300; i++) {
+    const [bx, by, r] = blobs[Math.floor(R() * blobs.length)], a = R() * 6.283, d = r * (.2 + .85 * Math.sqrt(R()));
+    const x = bx + Math.cos(a) * d, y = by + Math.sin(a) * d * .85, lit = Math.max(0, Math.min(1, .5 + (by - y) * .006 + (R() - .5) * .5));
+    const c = lit < .5 ? mix([70, 112, 76], [110, 150, 98], lit * 2) : mix([110, 150, 98], [168, 200, 140], (lit - .5) * 2);
+    leaves += `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="${(8 + R() * 5).toFixed(1)}" ry="${(2.6 + R() * 1.4).toFixed(1)}" transform="rotate(${Math.round(R() * 180)} ${x.toFixed(1)} ${y.toFixed(1)})" fill="rgb(${c})"/>`;
+  }
+  for (let i = 0; i < 9; i++) { const [bx, by, r] = blobs[i % blobs.length], a = R() * 6.283, d = r * (.55 + .4 * R()); const x = bx + Math.cos(a) * d, y = by + Math.sin(a) * d * .8; salt += `<path class="twinkle" style="animation-delay:-${(R() * 2).toFixed(1)}s" d="M${x.toFixed(1)} ${(y - 6).toFixed(1)} l4 6 l-4 6 l-4 -6Z" fill="#fff" stroke="#9fb5c4" stroke-width=".8"/>`; }
+  const base = blobs.map(([bx, by, r]) => `<circle cx="${bx}" cy="${by}" r="${r * .92}" fill="#4f7a55"/>`).join("");
+  const trunk = `<path d="M${cx} ${gy + 6} C${cx - 6} ${gy - 60} ${cx + 4} ${gy - 100} ${cx - 2} ${gy - 140}" stroke="#4a3a2e" stroke-width="15" fill="none" stroke-linecap="round"/><path d="M${cx - 2} ${gy - 130} C${cx - 30} ${gy - 150} ${cx - 44} ${gy - 160} ${cx - 56} ${gy - 168}" stroke="#4a3a2e" stroke-width="8" fill="none" stroke-linecap="round"/><path d="M${cx - 2} ${gy - 130} C${cx + 30} ${gy - 150} ${cx + 44} ${gy - 160} ${cx + 56} ${gy - 168}" stroke="#4a3a2e" stroke-width="8" fill="none" stroke-linecap="round"/>`;
+  const g = () => (R() + R() + R() - 1.5) / 1.5;
+  const pneu = Array.from({ length: 38 }, () => { const x = cx + g() * 150, h = 36 + R() * 26, tilt = (R() - .5) * 10; return `<g transform="rotate(${tilt.toFixed(1)} ${x.toFixed(1)} ${gy})"><rect x="${(x - 2).toFixed(1)}" y="${(gy - h).toFixed(1)}" width="4" height="${(h + 8).toFixed(1)}" rx="2" fill="#5a4635"/><rect x="${(x - 1).toFixed(1)}" y="${(gy - h + 2).toFixed(1)}" width="1.2" height="${(h - 4).toFixed(1)}" rx=".6" fill="#8a6c52" opacity=".7"/></g>`; }).join("");
+  return { pneu, tree: `<g class="sway">${trunk}${base}${leaves}${salt}</g>` };
+}
+
+const aerWheel = (cx, cy) => `<g transform="translate(${cx} ${cy})"><g class="spin2">${[0, 90, 180, 270].map(r => `<rect x="-1.5" y="-13" width="3" height="11" transform="rotate(${r})" fill="#f4f8fa"/>`).join("")}</g></g>`;
+
+Object.assign(ART, {
+  /* Module 1, screen 3. Two real species, two root types, salt on the leaves. */
+  tricks() {
+    const G = 392, bm = blackMangrove(600, G);
+    return svgWrap("trk", `
+      ${sunSvg(742, 66, 26)}${flock([[34, .9, 30, 6], [60, .7, 38, 20]], 800)}
+      ${U("mtree", 92, G - 292, 240, 300)}
+      ${bm.tree}
+      <g class="tideswing"><rect x="0" y="${G - 24}" width="800" height="60" fill="#3cb7ea" opacity=".5"/></g>
+      ${bm.pneu}
+      <path d="M0 ${G} H800 V500 H0Z" fill="#6e5f4a"/><path d="M0 ${G + 40} C200 ${G + 34} 600 ${G + 34} 800 ${G + 40} V500 H0Z" fill="#574736"/>
+      ${badge(120, 340, 1)}${badge(468, 318, 2)}${badge(688, 130, 3)}
+      ${cap(212, 450, "Red mangrove")}${cap(600, 450, "Black mangrove")}
+      ${cap(212, 480, "Roots arch out and grip the mud", { size: 20, weight: 500 })}${cap(600, 480, "Roots rise out of the mud", { size: 20, weight: 500 })}`);
+  },
+
+  /* Module 4, screen 1. A cleared site recovers in stages, if the site and water allow. */
+  regrowth() {
+    const G = 306;
+    return svgWrap("rg", `
+      ${sunSvg(724, 64, 26)}${flock([[34, .9, 32, 5], [60, .7, 40, 19]], 800)}
+      <g class="tideswing"><rect x="0" y="${G - 32}" width="800" height="70" fill="#3cb7ea" opacity=".5"/></g>
+      ${mudGround(G)}
+      <path d="M268 90 V380 M534 90 V380" stroke="var(--ink)" stroke-opacity=".25" stroke-width="2" stroke-dasharray="6 8"/>
+      ${stumpSvg(84, G - 2, 24)}${stumpSvg(176, G + 12, 19)}${stumpSvg(232, G - 6, 17)}${stumpSvg(124, G + 40, 14)}
+      ${[318, 372, 426, 480].map((x, i) => `<g class="growup" style="--d:${(i * .6).toFixed(1)}s"><g transform="translate(${x} ${G + 6 + (i % 2) * 6}) scale(2.6)">${seedling(0, 0)}</g></g>`).join("")}
+      ${[[606, 1.7], [700, 1.35], [764, 1.05]].map(([x, s], i) => `<g class="growup" style="--d:${(1.4 + i * .5).toFixed(1)}s">${U("mtree", x - 50 * s, G + 14 - 124 * s, 100 * s, 124 * s)}</g>`).join("")}
+      ${label(146, 130, "Cleared", { size: 30, fill: "var(--ink)" })}${label(398, 130, "Seedlings take hold", { size: 30, fill: "var(--ink)" })}${label(660, 130, "Young forest", { size: 30, fill: "var(--ink)" })}
+      ${cap(400, 420, "Where the site and the water are right,")}${cap(400, 450, "a cleared forest can come back.")}
+      <path class="flowline" d="M60 482 H742" stroke="#f3e9d2" stroke-width="3" stroke-dasharray="3 9" stroke-linecap="round"/><path d="M752 482 l-16 -9 v18Z" fill="#f3e9d2"/>
+      ${cap(60, 472, "Time", { anchor: "start", size: 20, weight: 500 })}
+      <circle class="travel" cx="60" cy="482" r="7" fill="#f3e9d2" style="--tx:680px"/>`);
+  },
+
+  /* Module 4, screen 8. Groundwork first, then trees, as the Trees for Life page describes. */
+  panamaProject() {
+    const G = 340;
+    const flag = x => `<path d="M${x} ${G + 4} V${G - 96}" stroke="#f3e9d2" stroke-width="5" stroke-linecap="round"/><g class="wave" style="transform-origin:${x}px ${G - 94}px"><path d="M${x} ${G - 94} h46 l-10 14 l10 14 h-46Z" fill="#f0914a"/></g>`;
+    return svgWrap("pp", `
+      ${sunSvg(724, 64, 24)}${flock([[40, .8, 34, 8], [66, .65, 42, 22]], 800)}
+      <g class="tideswing"><rect x="0" y="${G - 30}" width="800" height="70" fill="#3cb7ea" opacity=".5"/></g>
+      ${mudGround(G)}
+      <rect x="24" y="22" width="296" height="44" rx="22" fill="#0054a5"/>${label(172, 52, "Trees for Life, Panama", { size: 24, fill: "#fff" })}
+      ${[96, 168, 240, 312].map(flag).join("")}
+      <path d="M96 ${G - 70} H312" stroke="#f3e9d2" stroke-width="2" stroke-dasharray="6 6" opacity=".8"/>
+      ${label(204, 150, "Groundwork first", { size: 30, fill: "var(--ink)" })}
+      <g class="nudge"><path d="M392 ${G - 60} H452" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/><path d="M466 ${G - 60} l-18 -10 v20Z" fill="var(--ink)"/></g>
+      ${[520, 574, 628, 682, 736].map((x, i) => `<g class="growup" style="--d:${(i * .5).toFixed(1)}s"><g transform="translate(${x} ${G + 8}) scale(1.9)">${seedling(0, 0)}</g></g>`).join("")}
+      ${label(614, 150, "Then trees in the ground", { size: 28, fill: "var(--ink)" })}
+      ${cap(400, 430, "Gifts help pay for both steps.")}`);
+  },
+
+  /* Module 5, screen 5. Following the work is optional. */
+  connect() {
+    const env = `<g><rect x="-20" y="-13" width="40" height="26" rx="3" fill="#fff" stroke="#0a2342" stroke-width="2.2"/><path d="M-20 -11 L0 4 L20 -11" fill="none" stroke="#0a2342" stroke-width="2.2" stroke-linejoin="round"/></g>`;
+    return forest({ id: "cn", w: 800, h: 500, waterY: 300, sunX: 640, sunY: 104, sunR: 36, endColor: "#0a2f5c", fish: false,
+      trees: [[540, .95], [660, 1.2], [770, .8]],
+      extra: `${house(46, 256)}${house(118, 262, 46)}
+      <path class="flowline" d="M630 150 Q400 40 150 216" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="3 10" stroke-linecap="round" opacity=".8"/>
+      <g><animateMotion dur="7s" repeatCount="indefinite" path="M630 150 Q400 40 150 216" rotate="0"/>${env}</g>
+      ${cap(120, 380, "You")}${cap(630, 380, "A mangrove coast")}
+      ${cap(400, 440, "Follow the work, if you want to.", { size: 28 })}` });
+  }
+});
+
+/* ---------------- more unique scenes ---------------- */
+const person = (x, y, body, skin, o = {}) => `<g><circle cx="${x}" cy="${y - 104}" r="30" fill="${skin}"/><path d="M${x - 42} ${y} V${y - 52} a42 42 0 0 1 84 0 V${y}Z" fill="${body}"/>${o.hat ? `<path d="M${x - 33} ${y - 116} a33 26 0 0 1 66 0Z" fill="${o.hat}"/><rect x="${x - 38}" y="${y - 118}" width="76" height="6" rx="3" fill="${o.hat}"/>` : `<path d="M${x - 30} ${y - 112} A30 30 0 0 1 ${x + 30} ${y - 112} Q${x} ${y - 128} ${x - 30} ${y - 112}Z" fill="#2b2a33"/>`}<circle cx="${x - 10}" cy="${y - 100}" r="3.2" fill="#1b1b1f"/><circle cx="${x + 10}" cy="${y - 100}" r="3.2" fill="#1b1b1f"/><path d="M${x - 10} ${y - 88} q10 9 20 0" stroke="#7a3a2a" stroke-width="3" fill="none" stroke-linecap="round"/></g>`;
+
+Object.assign(ART, {
+  /* Module 2, screen 1. A cutaway: one forest, four jobs. */
+  jobs() {
+    const N = 12, WL = 292;
+    const frame = ph => { let d = ""; for (let x = -10; x <= 340; x += 6) { const A = 22 - 18 * S3((x - 80) / 200); d += `${d ? "L" : "M"}${x} ${(WL + A * Math.sin(x / 13 - ph)).toFixed(1)} `; } return d; };
+    const frames = Array.from({ length: N + 1 }, (_, i) => frame(i * 2 * Math.PI / N));
+    const tail = ` L810 ${WL} L810 500 L-10 500Z`;
+    const anim = tl => `<animate attributeName="d" dur="2.6s" repeatCount="indefinite" values="${frames.map(f => f + tl).join(";")}"/>`;
+    const R = rng(5);
+    const dots = Array.from({ length: 26 }, (_, i) => `<g class="pulse" style="animation-delay:-${(R() * 1.5).toFixed(1)}s"><circle cx="${(20 + R() * 760).toFixed(0)}" cy="${(418 + R() * 72).toFixed(0)}" r="5" fill="#f3e9d2"/></g>`).join("");
+    const co2 = [0, 1.2, 2.4].map(b => `<circle r="7" fill="#fff" stroke="#0a2342" stroke-width="2"><animateMotion dur="3.6s" begin="${b}s" repeatCount="indefinite" path="M130 150 Q230 96 330 150"/><animate attributeName="opacity" values="0;1;1;0" dur="3.6s" begin="${b}s" repeatCount="indefinite"/></circle>`).join("");
+    const defs = `<linearGradient id="jw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5bc4ee" stop-opacity=".85"/><stop offset="1" stop-color="#0b5d99" stop-opacity=".95"/></linearGradient>`;
+    return svgWrap("jb", `
+      ${sunSvg(78, 70, 28)}${flock([[34, .9, 32, 6], [60, .7, 40, 20]], 800)}
+      ${U("mtree", 292, 86, 250, 312)}
+      <path d="${frames[0]}${tail}" fill="url(#jw)">${anim(tail)}</path>
+      <path d="${frames[0]}" fill="none" stroke="#fff" stroke-width="3" stroke-opacity=".7" stroke-linecap="round">${anim("")}</path>
+      <path d="M810 ${WL} H336" stroke="#fff" stroke-width="3" stroke-opacity=".6"/>
+      <path d="M0 404 C200 398 600 398 800 404 V500 H0Z" fill="#6e5f4a"/><path d="M0 440 C200 434 600 434 800 440 V500 H0Z" fill="#574736"/>
+      ${dots}${co2}${label(150, 118, "Carbon dioxide", { anchor: "start", size: 22, fill: "var(--ink)" })}
+      ${swimFish(372, .62, 26, 3, 800, .8)}${swimFish(392, .5, 34, 15, 800, .7)}
+      <g class="bobx"><g>${U("boat", 566, 236, 112, 57)}</g></g>
+      ${badge(40, 206, 1)}${label(76, 214, "Slows waves", { anchor: "start", size: 27, fill: "var(--ink)" })}
+      ${badge(40, 462, 2)}${cap(84, 470, "Stores carbon in the mud", { anchor: "start", size: 26 })}
+      ${badge(576, 338, 3)}${cap(608, 332, "Shelters", { anchor: "start", size: 24 })}${cap(608, 360, "young fish", { anchor: "start", size: 24 })}
+      ${badge(570, 150, 4)}${label(602, 142, "Supports", { anchor: "start", size: 25, fill: "var(--ink)" })}${label(602, 170, "fishing families", { anchor: "start", size: 25, fill: "var(--ink)" })}`, defs);
+  },
+
+  /* Module 2, screen 5. Fishing, gathering and selling, all from one shore. */
+  livelihood() {
+    const WL = 300;
+    const defs = `<linearGradient id="lvw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6ccaf0"/><stop offset="1" stop-color="#0b5d99"/></linearGradient>`;
+    const planks = Array.from({ length: 10 }, (_, i) => `<path d="M${500 + i * 30} 326 V344" stroke="#6b4a33" stroke-width="2" opacity=".6"/>`).join("");
+    const awning = Array.from({ length: 8 }, (_, i) => `<path d="M${548 + i * 26} 222 h13 v22 h-13Z" fill="${i % 2 ? "#fff" : "#4db749"}"/>`).join("");
+    const seller = `<circle cx="686" cy="262" r="13" fill="#d9a07a"/><path d="M670 306 V284 a16 16 0 0 1 32 0 V306Z" fill="#0054a5"/><path d="M672 255 a14 12 0 0 1 28 0 c-6 -4 -22 -4 -28 0Z" fill="#2b2a33"/>`;
+    const hop = (b, path) => `<g><animateMotion dur="5s" begin="${b}s" repeatCount="indefinite" path="${path}" rotate="auto-reverse"/>${U("fish", -16, -8, 34, 17)}</g>`;
+    return svgWrap("lv", `
+      ${sunSvg(128, 84, 30)}${flock([[40, .9, 30, 6], [64, .7, 38, 20]], 800)}
+      <path d="M0 ${WL - 6} L0 ${WL - 52} C90 ${WL - 92} 220 ${WL - 30} 340 ${WL - 62} S600 ${WL - 80} 800 ${WL - 40} V${WL - 6}Z" fill="var(--hill)" opacity=".75"/>
+      ${U("mtree", 34, WL - 120, 112, 140)}${U("mtree", 168, WL - 104, 96, 120)}${U("mtree", 372, WL - 96, 84, 105)}
+      <rect y="${WL}" width="800" height="${500 - WL}" fill="url(#lvw)"/>${ripples([WL + 14, WL + 52, WL + 96], 800)}
+      <g fill="#5a4a38">${[528, 628, 728].map(x => `<rect x="${x}" y="344" width="14" height="96"/>`).join("")}</g>
+      <rect x="500" y="324" width="300" height="20" fill="#9a7653"/>${planks}
+      <rect x="558" y="276" width="190" height="44" fill="#a87d52" stroke="#6b4a33" stroke-width="2"/><rect x="558" y="276" width="190" height="8" fill="#c79b6a"/>
+      <path d="M556 222 H748 L760 244 H544Z" fill="#fff"/>${awning}
+      <path d="M560 244 V320 M744 244 V320" stroke="#6b4a33" stroke-width="5"/>${seller}
+      <rect x="566" y="284" width="176" height="36" fill="#a87d52"/>
+      ${[572, 618, 664, 710].map((x, i) => `<rect x="${x}" y="296" width="38" height="22" rx="3" fill="#e9eef1" stroke="#9aa9b2" stroke-width="1.5"/>${U("fish", x + 5, 300, 28, 14)}`).join("")}
+      <ellipse cx="530" cy="318" rx="24" ry="9" fill="#b88a5a" stroke="#8a6a4c" stroke-width="2"/>${U("crab", 514, 292, 30, 20)}${U("crab", 534, 296, 26, 17)}
+      <g class="bobx"><g>
+        <path d="M120 ${WL + 6} Q240 ${WL + 40} 372 ${WL + 6} L350 ${WL + 30} Q240 ${WL + 56} 144 ${WL + 30}Z" fill="#8a6a4c" stroke="#5a4a38" stroke-width="2.5"/>
+        <path d="M256 ${WL - 2} L322 ${WL - 40}" stroke="#6b4a33" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="226" cy="${WL - 62}" r="13" fill="#d9a07a"/><path d="M208 ${WL + 2} V${WL - 34} a18 18 0 0 1 36 0 V${WL + 2}Z" fill="#2b7a99"/><path d="M210 ${WL - 70} a16 14 0 0 1 32 0Z" fill="#e8d9b8"/>
+        <path d="M244 ${WL - 30} Q290 ${WL - 20} 330 ${WL - 44}" stroke="#6b4a33" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <ellipse cx="164" cy="${WL + 2}" rx="22" ry="8" fill="#b88a5a" stroke="#8a6a4c" stroke-width="2"/>${U("crab", 150, WL - 20, 26, 17)}
+      </g></g>
+      ${hop(0, `M430 ${WL + 30} Q470 ${WL - 70} 520 ${WL + 30}`)}${hop(2.5, `M600 ${WL + 60} Q640 ${WL - 30} 690 ${WL + 60}`)}
+      ${swimFish(WL + 120, .7, 30, 4, 800, .6)}${swimFish(WL + 160, .55, 38, 18, 800, .5)}`, defs);
+  },
+
+  /* Module 4, screen 4. The blue economy as a loop that keeps the nursery intact. */
+  bluecycle() {
+    const cx = 400, cy = 262, R = 150;
+    const pos = a => [cx + R * Math.cos(a * Math.PI / 180), cy + R * Math.sin(a * Math.PI / 180)];
+    const nodes = [[-90, "tree", ["Nursery stays", "intact"]], [30, "fish", ["Fish grow up"]], [150, "boat", ["Families fish"]]];
+    const heads = [-30, 90, 210].map(a => { const [x, y] = pos(a); return `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${a + 90})"><path d="M0 -12 l12 20 h-24Z" fill="#0a2342"/></g>`; }).join("");
+    const labelsAt = [[cx + 96, 104, "start"], [pos(30)[0] + 4, pos(30)[1] + 94, "middle"], [pos(150)[0] - 4, pos(150)[1] + 94, "middle"]];
+    const body = nodes.map(([a, ico, t], i) => { const [x, y] = pos(a); const [lx, ly, an] = labelsAt[i];
+      return `<g class="pop" style="--d:${(i * .4).toFixed(1)}s"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="66" fill="${DEEPG}"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="66" fill="none" stroke="#4db749" stroke-width="4"/></g><g class="bobx" style="animation-delay:-${i * .9}s"><g transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(.85)">${ICO[ico]()}</g></g><g class="fi" style="--d:${(.3 + i * .4).toFixed(1)}s">${lines(lx, ly, t, 30, { anchor: an, size: 27, fill: "var(--ink)" })}</g>`; }).join("");
+    return flat("bc", `<circle class="flowline" cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#0054a5" stroke-width="4" stroke-dasharray="3 12" stroke-linecap="round"/>${heads}
+      ${body}
+      ${lines(cx, cy - 8, ["Still fish", "next year"], 34, { size: 30, fill: "var(--ink)" })}
+      <circle r="9" fill="#4db749" stroke="#0a2342" stroke-width="3"><animateMotion dur="9s" repeatCount="indefinite" path="M${cx} ${cy - R} A${R} ${R} 0 1 1 ${cx - .01} ${cy - R}"/></circle>`);
+  },
+
+  /* Module 4, screen 7. Two coasts, two tide ranges, and trash that still threatens recovery. */
+  panamaCoasts() {
+    const panel = (ox, big) => {
+      const G = 404;
+      const trash = `<g class="${big ? "tidebig" : "tidesmall"}"><g class="trash" style="animation-delay:${big ? "0s" : "-2.5s"}"><path d="M${ox + 38} 316 h8 v-9 h6 v9 h8 q4 3 4 10 v22 h-26Z" fill="#9ad8e8" stroke="#0a2342" stroke-width="2"/><rect x="${ox + 38}" y="328" width="26" height="8" fill="#0054a5" opacity=".6"/><text x="${ox + 51}" y="296" text-anchor="middle" font-family="Figtree, system-ui, sans-serif" font-weight="700" font-size="20" fill="#0a2342">Trash</text></g><g class="trash" style="animation-delay:-4.5s"><path d="M${ox + 30} 336 q14 -22 32 -2 q-4 14 -32 2Z" fill="#fff" stroke="#8a9bab" stroke-width="2"/><path d="M${ox + 38} 326 q4 -10 10 -12" stroke="#8a9bab" stroke-width="2" fill="none"/></g></g>`;
+      return `<g clip-path="url(#pc${ox})">
+        <g class="${big ? "tidebig" : "tidesmall"}"><rect x="${ox}" y="330" width="400" height="120" fill="#3cb7ea" opacity=".6"/></g>
+        ${trash}
+        <path d="M${ox} ${G} H${ox + 400} V500 H${ox}Z" fill="#6e5f4a"/><path d="M${ox} ${G + 40} C${ox + 100} ${G + 34} ${ox + 300} ${G + 34} ${ox + 400} ${G + 40} V500 H${ox}Z" fill="#574736"/>
+      </g>`;
+    };
+    const treesL = [[ox => ox + 190, 150], [ox => ox + 320, 130]].map(([f, s]) => U("mtree", f(0) - s * .4, 410 - s * 1.24, s * .8, s * 1.0)).join("");
+    const defs = `<linearGradient id="psky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--sky-top)"/><stop offset="1" stop-color="var(--sky-bot)"/></linearGradient><clipPath id="pc0"><rect x="0" width="400" height="500"/></clipPath><clipPath id="pc400"><rect x="400" width="400" height="500"/></clipPath>`;
+    const trees = ox => [[ox + 190, 190], [ox + 320, 160]].map(([x, s]) => U("mtree", x - s * .4, 414 - s * 1.2, s * .8, s * 1.0)).join("");
+    return `<svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><defs>${defs}</defs>
+      <rect width="800" height="500" fill="url(#psky)"/>
+      ${trees(0)}${trees(400)}
+      ${panel(0, true)}${panel(400, false)}
+      <path d="M400 20 V420" stroke="var(--ink)" stroke-opacity=".3" stroke-width="2" stroke-dasharray="6 8"/>
+      ${label(200, 60, "Pacific coast", { size: 34, fill: "var(--ink)" })}${label(200, 94, "Big tides", { size: 26, weight: 500, fill: "var(--ink)" })}
+      ${label(600, 60, "Caribbean coast", { size: 34, fill: "var(--ink)" })}${label(600, 94, "Small tides", { size: 26, weight: 500, fill: "var(--ink)" })}
+      ${cap(400, 470, "On both coasts, trash washing in still threatens the recovery.", { size: 25 })}</svg>`;
+  },
+
+  /* Module 5, screen 2. One fact, passed from person to person. */
+  shareChain() {
+    const xs = [150, 400, 650], bodies = ["#0054a5", "#4db749", "#0a2342"], skins = ["#d9a07a", "#b9825b", "#f0c8a0"], hats = [null, "#e8d9b8", null];
+    return flat("sh", `<path d="M0 392 C200 380 600 380 800 392 V500 H0Z" fill="#8fcf8a" opacity=".55"/>
+      ${[0, 1].map(i => `<path class="flowline" d="M${xs[i] + 70} 300 H${xs[i + 1] - 70}" stroke="#0054a5" stroke-width="4" stroke-dasharray="3 10" stroke-linecap="round"/><path d="M${xs[i + 1] - 56} 300 l-16 -9 v18Z" fill="#0054a5"/>`).join("")}
+      ${xs.map((x, i) => `<g class="pop" style="--d:${(i * .4).toFixed(1)}s">${person(x, 384, bodies[i], skins[i], { hat: hats[i] })}</g>`).join("")}
+      ${xs.map((x, i) => `<g class="say" style="--d:${(i * 2).toFixed(1)}s"><path d="M${x - 62} 70 h124 a14 14 0 0 1 14 14 v62 a14 14 0 0 1 -14 14 h-62 l-14 22 l-6 -22 h-42 a14 14 0 0 1 -14 -14 v-62 a14 14 0 0 1 14 -14Z" fill="#fff" stroke="#0a2342" stroke-width="3"/>${U("mtree", x - 26, 84, 52, 65)}</g>`).join("")}
+      ${label(400, 452, "Tell one person one fact.", { size: 34, fill: "var(--ink)" })}`);
+  }
+});
+
+/* =====================================================================
+   Round 2: realistic shrimp, clearer species, shore market, clickable numbers
+   ===================================================================== */
+const shrimpDefs = `
+  <linearGradient id="shR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3e7da"/><stop offset=".55" stop-color="#d8bda8"/><stop offset="1" stop-color="#a98a78"/></linearGradient>
+  <linearGradient id="shC" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbbd90"/><stop offset=".5" stop-color="#ef7f50"/><stop offset="1" stop-color="#c4492b"/></linearGradient>`;
+
+/* A detailed shrimp, facing left. cooked = the orange-pink of a cooked shrimp, otherwise a live pond shrimp. */
+function shrimp2({ cooked = false, sc = 1, ants = true } = {}) {
+  const P = cooked
+    ? { g: "url(#shC)", edge: "#8e311c", tail: "#d8452a", tailHi: "#f39a6b", belly: "#fde1c4", leg: "#f0966c", ant: "#d9663f", dark: "#a93a22" }
+    : { g: "url(#shR)", edge: "#76594a", tail: "#c98e86", tailHi: "#ecc8bc", belly: "#f8ebe0", leg: "#d2b39d", ant: "#b8987f", dark: "#9a6f5c" };
+  const bz = (p, u) => { const m = 1 - u; return [m*m*m*p[0][0] + 3*m*m*u*p[1][0] + 3*m*u*u*p[2][0] + u*u*u*p[3][0], m*m*m*p[0][1] + 3*m*m*u*p[1][1] + 3*m*u*u*p[2][1] + u*u*u*p[3][1]]; };
+  const A = [[-8, -6], [-8, -34], [28, -38], [40, -8]], B = [[40, -8], [46, 10], [38, 28], [18, 34]];
+  const at = t => { const seg = t <= 1 ? A : B, u = t <= 1 ? t : t - 1, [x, y] = bz(seg, u), [x2, y2] = bz(seg, Math.min(1, u + .02)), [x1, y1] = bz(seg, Math.max(0, u - .02)); const l = Math.hypot(x2 - x1, y2 - y1) || 1; return { x, y, tx: (x2 - x1) / l, ty: (y2 - y1) / l }; };
+  const th = t => 19 - 10.5 * (t / 2);
+  const dors = [], vent = [];
+  for (let k = 0; k <= 40; k++) { const t = k / 20, p = at(t), nx = -p.ty, ny = p.tx, r = th(t); dors.push([p.x - nx * r, p.y - ny * r]); vent.push([p.x + nx * r * .92, p.y + ny * r * .92]); }
+  const poly = pts => pts.map(([x, y], i) => `${i ? "L" : "M"}${x.toFixed(1)} ${y.toFixed(1)}`).join(" ");
+  const body = `<path d="${poly(dors)} ${poly(vent.slice().reverse()).replace("M", "L")}Z" fill="${P.g}" stroke="${P.edge}" stroke-width="1.1" stroke-linejoin="round"/>`;
+  const ventBand = `<path d="${poly(vent.map(([x, y], i) => { const p = at(i / 20), r = th(i / 20) * .45; return [x - (-p.ty) * r, y - p.tx * r]; }))}" stroke="${P.belly}" stroke-opacity=".7" stroke-width="5" fill="none" stroke-linecap="round"/>`;
+  const dorsHi = `<path d="${poly(dors.map(([x, y], i) => { const p = at(i / 20), r = th(i / 20) * .3; return [x + (-p.ty) * r, y + p.tx * r]; }))}" stroke="#fff" stroke-opacity=".55" stroke-width="2.2" fill="none" stroke-linecap="round"/>`;
+  const seg = [.28, .56, .84, 1.12, 1.4, 1.68].map(tt => { const p = at(tt), nx = -p.ty, ny = p.tx, r = th(tt); const x1 = p.x - nx * r, y1 = p.y - ny * r, x2 = p.x + nx * r * .92, y2 = p.y + ny * r * .92; return `<path d="M${x1.toFixed(1)} ${y1.toFixed(1)} Q${(p.x - p.tx * 3).toFixed(1)} ${(p.y - p.ty * 3).toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}" stroke="${P.edge}" stroke-opacity=".7" stroke-width="1.2" fill="none"/><path d="M${(x1 + p.tx * 6).toFixed(1)} ${(y1 + p.ty * 6).toFixed(1)} Q${(p.x + p.tx * 3).toFixed(1)} ${(p.y + p.ty * 3).toFixed(1)} ${(x2 + p.tx * 6).toFixed(1)} ${(y2 + p.ty * 6).toFixed(1)}" stroke="#fff" stroke-opacity=".22" stroke-width="1.4" fill="none"/>`; }).join("");
+  const pleo = [.2, .5, .8, 1.1, 1.4].map(tt => { const p = at(tt), nx = -p.ty, ny = p.tx, r = th(tt) * .92; const x = p.x + nx * r, y = p.y + ny * r; return `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="2.4" ry="7.5" transform="rotate(${(Math.atan2(ny, nx) * 180 / Math.PI - 90 + 15).toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})" fill="${P.tailHi}" stroke="${P.edge}" stroke-width=".6"/>`; }).join("");
+  const e = at(2), ang = Math.atan2(e.ty, e.tx) * 180 / Math.PI;
+  const fan = [-38, -16, 16, 38].map(d => `<path d="M0 0 C-5 9 -6 20 ${(d / 3).toFixed(1)} 26 C${(d / 3 + 7).toFixed(1)} 18 6 7 0 0Z" transform="rotate(${(ang - 90 + d).toFixed(0)})" fill="${P.tail}" stroke="${P.edge}" stroke-width=".8"/>`).join("");
+  const telson = `<path d="M-4 0 L0 24 L4 0Z" transform="rotate(${(ang - 90).toFixed(0)})" fill="${P.tailHi}" stroke="${P.edge}" stroke-width=".8"/>`;
+  const carapace = `<path d="M-52 10 C-58 -14 -36 -36 -10 -32 C8 -28 14 -2 2 16 C-10 28 -44 28 -52 10Z" fill="${P.g}" stroke="${P.edge}" stroke-width="1.1"/>
+    <path d="M-50 -2 C-46 -22 -28 -30 -14 -26" stroke="#fff" stroke-opacity=".6" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M-30 -26 C-20 -14 -18 4 -26 20" stroke="${P.edge}" stroke-opacity=".5" stroke-width="1.2" fill="none"/>
+    <path d="M-52 8 C-42 24 -16 26 0 14" stroke="${P.belly}" stroke-opacity=".7" stroke-width="3.4" fill="none" stroke-linecap="round"/>`;
+  const rostrum = `<path d="M-52 -8 L-86 -28 L-76 -22 L-80 -16 L-66 -14 L-70 -8Z" fill="${P.g}" stroke="${P.edge}" stroke-width=".9" stroke-linejoin="round"/>`;
+  const eye = `<ellipse cx="-45" cy="-9" rx="5.6" ry="6.2" fill="#111118"/><ellipse cx="-46.8" cy="-11" rx="1.8" ry="2.2" fill="#fff"/>`;
+  const ant = `<g fill="none" stroke="${P.ant}" stroke-linecap="round"><path d="M-50 -3 C-80 -30 -120 -26 -152 -58" stroke-width="1.6"/><path d="M-52 2 C-86 8 -124 20 -158 10" stroke-width="1.4"/><path d="M-50 -5 C-68 -14 -84 -12 -98 -24" stroke-width="1.2"/></g>`;
+  const legs = [-46, -36, -26, -16, -6].map((x, i) => `<path d="M${x} 18 q${-4 - i % 2 * 2} 9 ${-10 + i} 15" stroke="${P.leg}" stroke-width="2.2" fill="none" stroke-linecap="round"/>`).join("");
+  return `<g transform="scale(${sc})">${ants ? ant : ""}${legs}<g transform="translate(${e.x.toFixed(1)} ${e.y.toFixed(1)})">${telson}${fan}</g>${pleo}${body}${ventBand}${seg}${dorsHi}${carapace}${rostrum}${eye}</g>`;
+}
+
+/* a standing child who can wave */
+function kid(x, y, girl, o = {}) {
+  const skin = o.skin || "#e3a97c", hair = o.hair || "#2b2a33", top = o.top, bottom = o.bottom;
+  const legs = girl
+    ? `<rect x="${x - 10}" y="${y - 30}" width="7" height="30" fill="${skin}"/><rect x="${x + 3}" y="${y - 30}" width="7" height="30" fill="${skin}"/><path d="M${x - 14} ${y - 4} h11 v4 h-11Z M${x + 3} ${y - 4} h11 v4 h-11Z" fill="#fff"/>`
+    : `<rect x="${x - 11}" y="${y - 32}" width="9" height="32" fill="${bottom}"/><rect x="${x + 2}" y="${y - 32}" width="9" height="32" fill="${bottom}"/><path d="M${x - 15} ${y - 4} h13 v4 h-13Z M${x + 2} ${y - 4} h13 v4 h-13Z" fill="#fff"/>`;
+  const body = girl
+    ? `<path d="M${x - 15} ${y - 74} h30 l10 46 h-50Z" fill="${top}"/>`
+    : `<rect x="${x - 15}" y="${y - 74}" width="30" height="42" rx="6" fill="${top}"/><rect x="${x - 15}" y="${y - 40}" width="30" height="12" fill="${bottom}"/>`;
+  const armDown = `<path d="M${x - 15} ${y - 68} l-9 28" stroke="${skin}" stroke-width="7" stroke-linecap="round"/>`;
+  const armUp = `<g class="waving" style="transform-origin:${x + 15}px ${y - 68}px"><path d="M${x + 15} ${y - 68} l14 -26" stroke="${skin}" stroke-width="7" stroke-linecap="round"/><circle cx="${x + 30}" cy="${y - 98}" r="6.5" fill="${skin}"/></g>`;
+  const head = `<circle cx="${x}" cy="${y - 92}" r="17" fill="${skin}"/>` + (girl
+    ? `<path d="M${x - 18} ${y - 90} a18 20 0 0 1 36 0 c-4 -8 -10 -12 -18 -12 s-14 4 -18 12Z" fill="${hair}"/><circle cx="${x - 20}" cy="${y - 76}" r="7" fill="${hair}"/><path d="M${x - 17} ${y - 92} q-8 14 -3 22" stroke="${hair}" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M${x + 17} ${y - 92} q8 14 3 22" stroke="${hair}" stroke-width="6" fill="none" stroke-linecap="round"/>`
+    : `<path d="M${x - 17} ${y - 94} a17 18 0 0 1 34 0 c-6 -6 -12 -8 -17 -8 s-11 2 -17 8Z" fill="${hair}"/>`);
+  const face = `<circle cx="${x - 6}" cy="${y - 92}" r="2.2" fill="#1b1b1f"/><circle cx="${x + 6}" cy="${y - 92}" r="2.2" fill="#1b1b1f"/><path d="M${x - 6} ${y - 84} q6 6 12 0" stroke="#7a3a2a" stroke-width="2.2" fill="none" stroke-linecap="round"/>`;
+  return `<g>${legs}${armDown}${body}${armUp}${head}${face}</g>`;
+}
+
+Object.assign(ART, {
+  /* Module 1, screen 3. Two clearly different mangroves, side by side. */
+  tricks() {
+    const G = 396, R = rng(23);
+    const bm = blackMangrove(600, G);
+    const g = () => (R() + R() + R() - 1.5) / 1.5;
+    const pn = Array.from({ length: 40 }, () => { const x = 600 + g() * 135, h = 52 + R() * 40, tilt = (R() - .5) * 8; return `<g transform="rotate(${tilt.toFixed(1)} ${x.toFixed(1)} ${G})"><rect x="${(x - 2.6).toFixed(1)}" y="${(G - h).toFixed(1)}" width="5.2" height="${(h + 10).toFixed(1)}" rx="2.6" fill="#4c3a2c"/><rect x="${(x - 2.6).toFixed(1)}" y="${(G - h).toFixed(1)}" width="5.2" height="9" rx="2.6" fill="#b79373"/></g>`; }).join("");
+    const pill = (x, text, c) => `<rect x="${x - 108}" y="20" width="216" height="40" rx="20" fill="${c}"/>${label(x, 48, text, { size: 24, fill: "#fff" })}`;
+    return svgWrap("trk", `
+      <rect x="400" y="0" width="400" height="500" fill="#ffffff" opacity=".18"/><path d="M400 0 V396" stroke="var(--ink)" stroke-opacity=".25" stroke-width="2" stroke-dasharray="6 8"/>
+      ${sunSvg(760, 100, 20)}${flock([[84, .8, 34, 6], [110, .65, 42, 20]], 800)}
+      ${U("mtree", 70, 88, 260, 325)}
+      ${bm.tree}
+      <g class="tideswing"><rect x="0" y="${G - 22}" width="800" height="60" fill="#3cb7ea" opacity=".5"/></g>
+      ${pn}
+      <path d="M0 ${G} H800 V500 H0Z" fill="#6e5f4a"/><path d="M0 ${G + 38} C200 ${G + 32} 600 ${G + 32} 800 ${G + 38} V500 H0Z" fill="#574736"/>
+      ${pill(200, "Red mangrove", "#b5452c")}${pill(600, "Black mangrove", "#2a3340")}
+      ${badge(96, 346, 1)}${badge(486, 340, 2)}${badge(716, 196, 3)}
+      ${cap(200, 452, "Long roots arch out from the trunk", { size: 22, weight: 500 })}${cap(600, 452, "Thin roots rise up out of the mud", { size: 22, weight: 500 })}`);
+  },
+
+  /* Module 2, screen 5. Boats land the catch on the shore, and the market is on dry land. */
+  livelihood() {
+    const WL = 306;
+    const defs = `<linearGradient id="lvw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6ccaf0"/><stop offset="1" stop-color="#0b5d99"/></linearGradient><linearGradient id="lvs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8d4a2"/><stop offset="1" stop-color="#cdb27c"/></linearGradient>${shrimpDefs}`;
+    const awning = Array.from({ length: 8 }, (_, i) => `<path d="M${560 + i * 24} 214 h12 v22 h-12Z" fill="${i % 2 ? "#fff" : "#4db749"}"/>`).join("");
+    const hop = (b, path) => `<g><animateMotion dur="5s" begin="${b}s" repeatCount="indefinite" path="${path}" rotate="auto-reverse"/>${U("fish", -16, -8, 34, 17)}</g>`;
+    const fishBox = (x, y) => `<rect x="${x}" y="${y}" width="40" height="22" rx="3" fill="#e9eef1" stroke="#9aa9b2" stroke-width="1.5"/>${U("fish", x + 5, y + 4, 30, 15)}`;
+    return svgWrap("lv", `
+      ${sunSvg(110, 84, 30)}${flock([[40, .9, 30, 6], [64, .7, 38, 20]], 800)}
+      <path d="M0 ${WL - 6} L0 ${WL - 52} C90 ${WL - 92} 220 ${WL - 30} 340 ${WL - 62} S600 ${WL - 80} 800 ${WL - 40} V${WL - 6}Z" fill="var(--hill)" opacity=".7"/>
+      ${U("mtree", 24, WL - 118, 112, 140)}${U("mtree", 150, WL - 100, 94, 118)}${U("mtree", 262, WL - 92, 80, 100)}
+      <rect y="${WL}" width="800" height="${500 - WL}" fill="url(#lvw)"/>${ripples([WL + 14, WL + 54, WL + 100], 520)}
+      <path d="M800 ${WL - 20} L520 ${WL - 4} C500 ${WL + 20} 470 ${WL + 80} 450 500 H800Z" fill="url(#lvs)"/>
+      <path d="M800 ${WL - 22} L522 ${WL - 8} C 540 ${WL - 18} 560 ${WL - 24} 800 ${WL - 30}Z" fill="#7fb069"/>
+      <path d="M520 ${WL - 2} C505 ${WL + 24} 484 ${WL + 70} 470 ${WL + 130}" stroke="#fff" stroke-opacity=".7" stroke-width="3" fill="none" stroke-linecap="round" class="pulse"/>
+      <path d="M570 244 V${WL - 4} M742 244 V${WL - 4}" stroke="#6b4a33" stroke-width="6"/>
+      <circle cx="688" cy="262" r="13" fill="#d9a07a"/><path d="M670 ${WL - 8} V282 a18 18 0 0 1 36 0 V${WL - 8}Z" fill="#0054a5"/><path d="M673 255 a15 12 0 0 1 30 0 c-6 -4 -24 -4 -30 0Z" fill="#2b2a33"/>
+      <rect x="560" y="270" width="190" height="40" fill="#a87d52" stroke="#6b4a33" stroke-width="2"/><rect x="560" y="270" width="190" height="8" fill="#c79b6a"/>
+      ${fishBox(572, 284)}${fishBox(620, 284)}${fishBox(668, 284)}${fishBox(716, 284)}
+      <path d="M552 214 H758 L770 236 H540Z" fill="#fff"/>${awning}
+      <ellipse cx="520" cy="${WL + 10}" rx="26" ry="9" fill="#b88a5a" stroke="#8a6a4c" stroke-width="2"/>${U("crab", 504, WL - 16, 30, 20)}${U("crab", 526, WL - 12, 26, 17)}
+      <ellipse cx="780" cy="${WL + 14}" rx="22" ry="8" fill="#b88a5a" stroke="#8a6a4c" stroke-width="2"/>${U("fish", 766, WL - 8, 28, 14)}
+      <g class="bobx"><g>
+        <circle cx="440" cy="${WL - 64}" r="12" fill="#d9a07a"/><path d="M426 ${WL + 24} V${WL - 36} a14 14 0 0 1 28 0 V${WL + 24}Z" fill="#2b7a99"/><path d="M427 ${WL - 70} a13 11 0 0 1 26 0Z" fill="#e8d9b8"/>
+        <path d="M452 ${WL - 40} l26 10" stroke="#d9a07a" stroke-width="6" stroke-linecap="round"/>
+        <ellipse cx="486" cy="${WL - 24}" rx="18" ry="9" fill="#b88a5a" stroke="#8a6a4c" stroke-width="2"/>${U("fish", 474, WL - 38, 24, 12)}${U("fish", 484, WL - 34, 22, 11)}
+        <ellipse cx="338" cy="${WL + 2}" rx="20" ry="8" fill="#b88a5a" stroke="#8a6a4c" stroke-width="2"/>${U("crab", 324, WL - 18, 24, 16)}
+        <path d="M290 ${WL + 8} Q400 ${WL + 42} 520 ${WL + 8} L500 ${WL + 30} Q400 ${WL + 56} 312 ${WL + 30}Z" fill="#8a6a4c" stroke="#5a4a38" stroke-width="2.5"/>
+        <path d="M300 ${WL + 8} Q400 ${WL + 22} 512 ${WL + 8}" stroke="#a98763" stroke-width="3" fill="none"/>
+      </g></g>
+      ${hop(0, `M160 ${WL + 40} Q205 ${WL - 60} 250 ${WL + 40}`)}${hop(2.6, `M330 ${WL + 80} Q375 ${WL - 10} 420 ${WL + 80}`)}
+      ${swimFish(WL + 130, .7, 30, 4, 520, .6)}${swimFish(WL + 170, .55, 38, 18, 520, .5)}`, defs);
+  },
+
+  /* Module 5, screen 5. A girl and a boy wave from the shore; an update travels to them. */
+  connect() {
+    const env = `<g><rect x="-20" y="-13" width="40" height="26" rx="3" fill="#fff" stroke="#0a2342" stroke-width="2.2"/><path d="M-20 -11 L0 4 L20 -11" fill="none" stroke="#0a2342" stroke-width="2.2" stroke-linejoin="round"/></g>`;
+    return forest({ id: "cn", w: 800, h: 500, waterY: 300, sunX: 640, sunY: 104, sunR: 36, endColor: "#0a2f5c", fish: false,
+      trees: [[540, .95], [660, 1.2], [770, .8]],
+      extra: `<path d="M0 318 C40 296 140 290 232 304 C268 314 272 350 258 392 C248 430 250 470 262 500 H0Z" fill="#cdb98a"/><path d="M0 318 C40 296 140 290 232 304 C256 310 266 322 266 338 C250 322 140 304 0 334Z" fill="#7fb069"/>
+      ${kid(78, 312, true, { top: "#4db749", hair: "#3a2a22", skin: "#e0a67b" })}${kid(150, 316, false, { top: "#0054a5", bottom: "#2b3a55", hair: "#1c1c22", skin: "#c58d62" })}
+      <path class="flowline" d="M630 150 Q400 40 140 180" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="3 10" stroke-linecap="round" opacity=".8"/>
+      <g><animateMotion dur="7s" repeatCount="indefinite" path="M630 150 Q400 40 140 180" rotate="0"/>${env}</g>
+      ${label(114, 360, "You", { size: 30, fill: "var(--ink)" })}${cap(630, 380, "A mangrove coast")}
+      ${cap(540, 440, "Follow the work, if you want to.", { size: 28 })}` });
   }
 });
 
@@ -1510,7 +1902,7 @@ function renderLesson() {
   const m = MOD(), SC = m.screens, s = SC[state.screen], n = SC.length;
   topstep.textContent = `Module ${state.mod}, screen ${state.screen + 1} of ${n}`;
   const last = state.screen === n - 1;
-  const chips = s.chips ? `<ul class="chips">${s.chips.map((c, i) => { const num = s.plain ? "" : `<b>${i + 1}</b>`, tip = s.tips && s.tips[i]; return tip ? `<li class="has-tip"><button type="button" class="chip" data-tip="${esc(tip)}" aria-describedby="tip">${num}${esc(c)}<span class="i" aria-hidden="true">i</span></button></li>` : `<li>${num}${esc(c)}</li>`; }).join("")}</ul>${s.tips ? `<p class="tiphint">Hover over a label, or tap it, to learn more.</p>` : ""}` : "";
+  const chips = s.badges ? `<p class="tiphint">Hover over a number, or tap it, to learn more.</p>` : s.chips ? `<ul class="chips">${s.chips.map((c, i) => { const num = s.plain ? "" : `<b>${i + 1}</b>`, tip = s.tips && s.tips[i]; return tip ? `<li class="has-tip"><button type="button" class="chip" data-tip="${esc(tip)}" aria-describedby="tip">${num}${esc(c)}<span class="i" aria-hidden="true">i</span></button></li>` : `<li>${num}${esc(c)}</li>`; }).join("")}</ul>${s.tips ? `<p class="tiphint">Hover over a label, or tap it, to learn more.</p>` : ""}` : "";
   const extra = (s.link ? `<p class="outlink"><a class="btn ghost sm" href="${s.link.url}" target="_blank" rel="noopener noreferrer">${esc(s.link.text)}<span class="sr"> (opens another site)</span></a></p>` : "")
     + (last && m.deeper ? `<p class="deeper"><strong>Go deeper (optional):</strong> <a href="${m.deeper.url}" target="_blank" rel="noopener noreferrer">${esc(m.deeper.text)}</a>. This opens another site.</p>` : "");
   const nav = state.back
@@ -1531,6 +1923,7 @@ function renderLesson() {
         <div class="nav">${nav}</div>
       </article>
     </div></div>`;
+  if (s.badges) app.querySelectorAll(".hot[data-n]").forEach(h => { const i = Number(h.dataset.n) - 1; if (s.tips && s.tips[i]) { h.dataset.tip = s.tips[i]; h.setAttribute("aria-label", `${i + 1}: ${s.badges[i]}. Press for details.`); h.setAttribute("aria-describedby", "tip"); } });
 }
 
 function renderQuiz() {
@@ -1608,7 +2001,7 @@ function renderReviewAll() {
         <div><h4><span>${n}.${i + 1}</span> ${esc(s.title)}</h4>
           ${s.lead ? `<p class="rv-lead">${esc(s.lead)}</p>` : ""}
           <p>${esc(s.text)}</p>
-          ${s.chips ? (s.tips ? `<div class="rv-meta"><b>Labels under the picture, with the text shown on hover:</b><ul class="rv-tips">${s.chips.map((c, i) => `<li><b>${esc(c)}.</b> ${esc(s.tips[i])}</li>`).join("")}</ul></div>` : `<p class="rv-meta"><b>Labels under the picture:</b> ${s.chips.map(esc).join("; ")}</p>`) : ""}
+          ${(s.chips || s.badges) ? (s.tips ? `<div class="rv-meta"><b>Labels under the picture, with the text shown on hover:</b><ul class="rv-tips">${(s.chips || s.badges).map((c, i) => `<li><b>${esc(c)}.</b> ${esc(s.tips[i])}</li>`).join("")}</ul></div>` : `<p class="rv-meta"><b>Labels under the picture:</b> ${(s.chips || s.badges).map(esc).join("; ")}</p>`) : ""}
           ${s.link ? `<p class="rv-meta"><b>Link:</b> ${esc(s.link.text)}, ${esc(s.link.url)}</p>` : ""}
           <p class="rv-meta"><b>Picture description:</b> ${esc(s.alt)}</p></div></article>`).join("");
     const qs = m.questions.map((Q, k) => `<li class="rv-q"><p class="rv-qtext">${esc(Q.q)}</p>
@@ -1681,20 +2074,20 @@ function showTip(btn, pin) {
   const left = Math.max(m, Math.min(r.left, window.innerWidth - tw - m));
   const below = r.bottom + 10, top = below + th > window.innerHeight - m ? Math.max(m, r.top - th - 10) : below;
   tipEl.style.left = left + "px"; tipEl.style.top = top + "px"; tipEl.style.visibility = "visible";
-  document.querySelectorAll(".chip[aria-expanded]").forEach(c => c.removeAttribute("aria-expanded"));
+  document.querySelectorAll(".chip[aria-expanded], .hot[aria-expanded]").forEach(c => c.removeAttribute("aria-expanded"));
   btn.setAttribute("aria-expanded", "true");
 }
 function hideTip() { if (tipEl && !tipEl.hidden) { tipEl.hidden = true; if (tipFor) tipFor.removeAttribute("aria-expanded"); tipFor = null; tipPinned = false; } }
-document.addEventListener("mouseover", e => { const b = e.target.closest(".chip"); if (b && !tipPinned) showTip(b, false); });
-document.addEventListener("mouseout", e => { const b = e.target.closest(".chip"); if (b && !tipPinned && !b.contains(e.relatedTarget)) hideTip(); });
-document.addEventListener("focusin", e => { const b = e.target.closest(".chip"); if (b) showTip(b, false); });
-document.addEventListener("focusout", e => { if (e.target.closest(".chip") && !tipPinned) hideTip(); });
+document.addEventListener("mouseover", e => { const b = e.target.closest(".chip, .hot[data-tip]"); if (b && !tipPinned) showTip(b, false); });
+document.addEventListener("mouseout", e => { const b = e.target.closest(".chip, .hot[data-tip]"); if (b && !tipPinned && !b.contains(e.relatedTarget)) hideTip(); });
+document.addEventListener("focusin", e => { const b = e.target.closest(".chip, .hot[data-tip]"); if (b) showTip(b, false); });
+document.addEventListener("focusout", e => { if (e.target.closest(".chip, .hot[data-tip]") && !tipPinned) hideTip(); });
 document.addEventListener("click", e => {
-  const b = e.target.closest(".chip");
+  const b = e.target.closest(".chip, .hot[data-tip]");
   if (b) { if (tipFor === b && tipPinned) hideTip(); else showTip(b, true); return; }
   hideTip();
 });
-document.addEventListener("keydown", e => { if (e.key === "Escape") hideTip(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") hideTip(); const h = e.target.closest && e.target.closest(".hot[data-tip]"); if (h && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); if (tipFor === h && tipPinned) hideTip(); else showTip(h, true); } });
 window.addEventListener("scroll", hideTip, { passive: true });
 window.addEventListener("resize", hideTip);
 
